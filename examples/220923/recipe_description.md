@@ -1,0 +1,21 @@
+
+    - Generella funktioner:
+        - Receptdashboard - visar alla recept och deras status
+    - Ingredienshantering:
+        - Skapa ingredienser - namn, beskrivning, standardmängd, standardenhet
+        - Lista ingredienser
+        - Uppdatera ingredienser
+        - Radera ingredienser
+    - Recepthantering:
+        - Visa matlagningsöversikt - vilka ingredienser som använts, deras mängder
+        - Starta nytt recept
+        - Redigera existerande recept
+        - Lägg till ingredienser i recept - välj från lista av ingredienser
+        - Registrera matlagningsdetaljer - mängd per ingrediens
+        - Lägg till instruktioner
+        - Avsluta redigering av recept
+    - Dataintegritet och felsökning:
+        - Validering - Ska inte gå att t.ex. använda en negativ mängd av en ingrediens
+        - Felåterkoppling - Användaren bör få tillbaka information om något gick fel
+    - Synkronisering och lagring:
+        - Lokal lagring - Informationen i appen lagras lokalt på enheten
