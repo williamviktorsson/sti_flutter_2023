@@ -1,8 +1,7 @@
 typedef IngredientId = String;
 
-
 // FINISHED: Consider adding identifiable interfaces for objects that require unique identification.
-      // The repository indicates that it expects each object to be identifyable by id
+// The repository indicates that it expects each object to be identifyable by id
 
 // sealed = cant be changed/extended outside of current library
 sealed class Identifiable {
@@ -69,11 +68,9 @@ abstract interface class IRepository<T extends Identifiable> {
   Future<ActionResult<void>> clear();
 }
 
-abstract interface class IRecipeBuilder {
+abstract interface class IRecepieEditingManager {
   IRecipe? get recipe;
-  Future<ActionResult<IRecipe>> newRecipe();
   Future<ActionResult<IRecipe>> editRecipe({required IRecipe recipe});
   Future<ActionResult<IRecipe>> addStep({required IRecipeStep step});
-  Future<ActionResult<IRecipe>> addInstruction({required String instruction});
-  Future<ActionResult<IRecipe>> finishEditing();
+  Future<ActionResult<void>> finishEditing();
 }

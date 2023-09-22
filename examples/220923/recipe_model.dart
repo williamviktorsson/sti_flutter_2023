@@ -30,12 +30,10 @@ abstract interface class IRepository<T> {
   clear();
 }
 
-abstract interface class IRecipeBuilder {
-  IRecipe? get recipe;
-  newRecipe();
-  editRecipe({required IRecipe recipe});
-  addStep({required IRecipeStep step});
-  addInstruction({required String instruction});
+abstract interface class IRecepieEditingManager {
+  IRecipe? get currentRecipe;
+  startEditing(IRecipe recipe);
+  addStep(IRecipeStep step);
   finishEditing();
 }
 
@@ -49,3 +47,5 @@ abstract interface class IRecipeBuilder {
 // TODO: Provide a structured way to handle success and failure scenarios.
 
 // TODO: Methods which may be async should be denoted as being Futures, such as Repository operations.
+
+// inlämning måndagar
