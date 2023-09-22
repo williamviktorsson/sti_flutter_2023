@@ -1,0 +1,261 @@
+<mxfile host="app.diagrams.net" modified="2023-09-22T06:39:31.203Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="8E6TvRtgcuE77c7q-bI8" version="21.8.0" type="device">
+  <diagram name="Page-1" id="NCVhBEKMuIL8DRtao78c">
+    <mxGraphModel dx="2321" dy="1226" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bqATVecDFZBd0OB_Plpx-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-1" target="bqATVecDFZBd0OB_Plpx-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-1" value="&lt;b&gt;DATABASE LAYER&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-25" y="600" width="390" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-3" target="bqATVecDFZBd0OB_Plpx-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-3" target="bqATVecDFZBd0OB_Plpx-21" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-3" value="&lt;b&gt;PERSISTANCE LAYER&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-25" y="450" width="390" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-7" value="&lt;b&gt;Data stored somewhere. Relational/unrelational data. Serialized/unserialized. Locally or remotely.&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D7DEE6;strokeColor=#23445d;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="395" y="600" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-10" value="&lt;b&gt;Provides the data to application.&lt;br&gt;&lt;br&gt;Communicates with the storage (http/sockets/sql/serialization etc.)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D7DEE6;strokeColor=#23445d;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="390" y="435" width="170" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-14" target="bqATVecDFZBd0OB_Plpx-21" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-14" value="&lt;b&gt;PRESENTATION LAYER&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-25" y="170" width="390" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-21" target="bqATVecDFZBd0OB_Plpx-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-21" target="bqATVecDFZBd0OB_Plpx-14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="265" y="330" />
+              <mxPoint x="265" y="290" />
+              <mxPoint x="268" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-21" value="&lt;b&gt;BUSINESS LAYER&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-35" y="330" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-21" target="bqATVecDFZBd0OB_Plpx-21" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-29" value="&quot;state&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="285" y="270" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-30" value="&quot;actions&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-15" y="270" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-31" value="propably crud&lt;br&gt;operation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-25" y="390" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-32" value="result" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="285" y="390" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-33" value="storage op&lt;br&gt;likely crud" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-15" y="545" width="80" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-34" value="result" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="285" y="545" width="70" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-35" value="&lt;b&gt;can be&amp;nbsp;&lt;br&gt;sync, async,&lt;br&gt;streamed&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#36393d;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-215" y="380" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-36" value="&lt;b&gt;result of actions&lt;br&gt;may be direct&lt;br&gt;state changes or&lt;br&gt;async&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#36393d;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-195" y="215" width="150" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-37" value="" style="endArrow=none;html=1;rounded=0;exitX=0.96;exitY=0.7;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-35" target="bqATVecDFZBd0OB_Plpx-31" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="155" y="480" as="sourcePoint" />
+            <mxPoint x="205" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-41" value="&lt;b&gt;Implements the business logic&lt;br&gt;Provides functionality&lt;br&gt;&lt;/b&gt;" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;sketch=1;curveFitting=1;jiggle=2;fillColor=#ffcccc;strokeColor=#36393d;position2=0;size=30;position=0;shadow=0;rounded=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="390" y="260" width="195" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-46" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=150;exitDy=80;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;strokeWidth=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-43" target="bqATVecDFZBd0OB_Plpx-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-43" value="&lt;b&gt;Interested in data&lt;br&gt;agnostic to logic&lt;br&gt;&lt;/b&gt;" style="shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;sketch=1;curveFitting=1;jiggle=2;fillColor=#ffcccc;strokeColor=#36393d;position2=1;size=0;position=0.53;shadow=0;rounded=1;base=150;arcSize=0;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-220" y="520" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-45" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.005;entryY=0.4;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-43" target="bqATVecDFZBd0OB_Plpx-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="155" y="480" as="sourcePoint" />
+            <mxPoint x="205" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-48" value="&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b style=&quot;&quot;&gt;- Generella funktioner:&lt;br&gt;&lt;/b&gt;&lt;span style=&quot;&quot; class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/span&gt;- Träningsdashboard - visar alla träningspass och deras status&lt;/font&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;- Övningshantering:&lt;br&gt;&lt;/b&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/span&gt;- Skapa övningar - namn,beskrivning, repetitioner, vilotid, antal sets, vikt&lt;br&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/span&gt;- Lista övningar&lt;br&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/span&gt;- Uppdatera övningar&lt;br&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/span&gt;- Radera övningar&lt;/font&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;- Träningspass:&lt;br&gt;&lt;/b&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/span&gt;- Starta nytt träningspass&lt;br&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/span&gt;- Återuppta pågående träningspass&lt;br&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/span&gt;- Pausa träningspass&lt;br&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/span&gt;- Lägg till övningar i träningspass - välj från lista av övningar&lt;br&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/span&gt;- Registrera prestanda - antal sets samt repetioner+vikt per set&lt;br&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/span&gt;- Visa träningsöversikt - vilka övningar som utförts, antal set, repetitioner och vikt.&lt;br&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/span&gt;- Avsluta träningspass&lt;/font&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;- Dataintegritet och felsökning:&lt;br&gt;&lt;/font&gt;&lt;/b&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot; class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- Validering - Ska inte gå att t.ex. utföra ett negativt antal repetitioner&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot; class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- Felåterkoppling - Användaren bör få tillbaka information om något gick fel&lt;/span&gt;&lt;/font&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b style=&quot;&quot;&gt;- Synkronisering och lagring:&lt;br&gt;&lt;/b&gt;&lt;span style=&quot;&quot; class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/span&gt;- Lokal lagring - Informationen i appen lagras lokalt på telefonen&lt;/font&gt;&lt;/blockquote&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#36393d;sketch=1;curveFitting=1;jiggle=2;shadow=0;align=left;perimeterSpacing=0;glass=0;" parent="1" vertex="1">
+          <mxGeometry x="1040" y="260" width="600" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-50" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Träningsapp&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
+          <mxGeometry x="1040" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-51" value="&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;- Generella funktioner:&lt;br&gt;&lt;/b&gt;&amp;nbsp; &amp;nbsp; - Receptdashboard - visar alla recept och deras status&lt;br&gt;&lt;b&gt;- Ingredienshantering:&lt;br&gt;&lt;/b&gt;&amp;nbsp; &amp;nbsp; - Skapa ingredienser - namn, beskrivning, standardmängd, standardenhet&lt;br&gt;&amp;nbsp; &amp;nbsp; - Lista ingredienser&lt;br&gt;&amp;nbsp; &amp;nbsp; - Uppdatera ingredienser&lt;br&gt;&amp;nbsp; &amp;nbsp; - Radera ingredienser&lt;br&gt;&lt;b&gt;- Recepthantering:&lt;br&gt;&lt;/b&gt;&amp;nbsp; &amp;nbsp; - Starta nytt recept&lt;br&gt;&amp;nbsp; &amp;nbsp; - Redigera existerande recept&lt;br&gt;&amp;nbsp; &amp;nbsp; - Lägg till ingredienser i recept - välj från lista av ingredienser&lt;br&gt;&amp;nbsp; &amp;nbsp; - Registrera matlagningsdetaljer - mängd per ingrediens&lt;/font&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&amp;nbsp; &amp;nbsp; - Lägg till instruktioner&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&amp;nbsp; &amp;nbsp; - Visa matlagningsöversikt - vilka ingredienser som använts, deras mängder&lt;br&gt;&amp;nbsp; &amp;nbsp; - Avsluta redigering av recept&lt;br&gt;&lt;b&gt;- Dataintegritet och felsökning:&lt;br&gt;&lt;/b&gt;&amp;nbsp; &amp;nbsp; - Validering - Ska inte gå att t.ex. använda en negativ mängd av en ingrediens&lt;br&gt;&amp;nbsp; &amp;nbsp; - Felåterkoppling - Användaren bör få tillbaka information om något gick fel&lt;br&gt;- Synkronisering och lagring:&lt;br&gt;&amp;nbsp; &amp;nbsp; - Lokal lagring - Informationen i appen lagras lokalt på enheten&lt;/font&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/blockquote&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#36393d;sketch=1;curveFitting=1;jiggle=2;shadow=0;align=left;perimeterSpacing=0;glass=0;" parent="1" vertex="1">
+          <mxGeometry x="1670" y="260" width="600" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-52" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Receptapp&lt;br&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
+          <mxGeometry x="1670" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;" parent="1" source="bqATVecDFZBd0OB_Plpx-80" target="bqATVecDFZBd0OB_Plpx-83" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-80" value="&lt;b&gt;&lt;font color=&quot;#4f5254&quot;&gt;DATABASE LAYER&lt;/font&gt;&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;sketch=1;curveFitting=1;jiggle=2;shadow=0;opacity=70;glass=0;textOpacity=70;" parent="1" vertex="1">
+          <mxGeometry x="1990" y="1515" width="390" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;" parent="1" source="bqATVecDFZBd0OB_Plpx-83" target="bqATVecDFZBd0OB_Plpx-80" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;" parent="1" source="bqATVecDFZBd0OB_Plpx-83" target="bqATVecDFZBd0OB_Plpx-90" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-83" value="&lt;b&gt;PERSISTANCE LAYER&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="1990" y="1365" width="390" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;" parent="1" source="bqATVecDFZBd0OB_Plpx-87" target="bqATVecDFZBd0OB_Plpx-90" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-87" value="&lt;b&gt;&lt;font color=&quot;#4f5254&quot;&gt;PRESENTATION LAYER&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;sketch=1;curveFitting=1;jiggle=2;shadow=0;opacity=70;textOpacity=70;" parent="1" vertex="1">
+          <mxGeometry x="1990" y="1085" width="390" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;" parent="1" source="bqATVecDFZBd0OB_Plpx-90" target="bqATVecDFZBd0OB_Plpx-83" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;" parent="1" source="bqATVecDFZBd0OB_Plpx-90" target="bqATVecDFZBd0OB_Plpx-87" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2280" y="1245" />
+              <mxPoint x="2280" y="1205" />
+              <mxPoint x="2283" y="1205" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-90" value="&lt;b&gt;BUSINESS LAYER&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;sketch=1;curveFitting=1;jiggle=2;shadow=0;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="1980" y="1245" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;sketch=1;curveFitting=1;jiggle=2;shadow=0;" parent="1" source="bqATVecDFZBd0OB_Plpx-90" target="bqATVecDFZBd0OB_Plpx-90" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-112" value="&lt;b&gt;&lt;font color=&quot;#4f5254&quot;&gt;Ej nödvändigt för modellering&lt;/font&gt;&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;textOpacity=30;" parent="1" vertex="1">
+          <mxGeometry x="2270" y="1055" width="170" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-118" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;strokeWidth=3;fillColor=#dae8fc;strokeColor=#6c8ebf;sketch=1;curveFitting=1;jiggle=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-117" target="bqATVecDFZBd0OB_Plpx-90" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-117" value="Behöver kunna utföra vår affärslogik&lt;br&gt;&lt;br&gt;- nytt recept&lt;br&gt;- redigera recept&lt;br&gt;- lägg till instruktion&lt;br&gt;- lägg till ingrediens&lt;br&gt;&lt;br&gt;Behöver kunna återkoppla fel" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#cce5ff;strokeColor=#36393d;" parent="1" vertex="1">
+          <mxGeometry x="1549" y="1185" width="210" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-121" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-119" target="bqATVecDFZBd0OB_Plpx-83" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-119" value="CRUD operationer&lt;br&gt;&lt;br&gt;Behöver känna till hur vårt&lt;br&gt;data ser ut&lt;br&gt;&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#ffcccc;strokeColor=#36393d;" parent="1" vertex="1">
+          <mxGeometry x="1549" y="1435" width="190" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-122" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Den här kompisen kan vara superavancerad och ganska enkel&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;sketch=1;curveFitting=1;jiggle=2;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="2430" y="1205" width="190" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-123" value="RecipeBuilder?" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#cce5ff;strokeColor=#36393d;" parent="1" vertex="1">
+          <mxGeometry x="1549" y="1095" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-124" value="Ingredient Repository" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#ffcccc;strokeColor=#36393d;" parent="1" vertex="1">
+          <mxGeometry x="1549" y="1365" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-125" value="Recipe Repository" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fillColor=#ffcccc;strokeColor=#36393d;" parent="1" vertex="1">
+          <mxGeometry x="1549" y="1555" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-126" value="&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&lt;b&gt;- Generella funktioner:&lt;br&gt;&lt;/b&gt;&amp;nbsp; &amp;nbsp; - Receptdashboard - visar alla recept och deras status&lt;br&gt;&lt;b&gt;- Ingredienshantering:&lt;br&gt;&lt;/b&gt;&amp;nbsp; &amp;nbsp; - Skapa ingredienser - namn, beskrivning, standardmängd, standardenhet&lt;br&gt;&amp;nbsp; &amp;nbsp; - Lista ingredienser&lt;br&gt;&amp;nbsp; &amp;nbsp; - Uppdatera ingredienser&lt;br&gt;&amp;nbsp; &amp;nbsp; - Radera ingredienser&lt;br&gt;&lt;b&gt;- Recepthantering:&lt;/b&gt;&lt;/font&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&amp;nbsp; &amp;nbsp; - Visa matlagningsöversikt - vilka ingredienser som använts, deras mängder&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/font&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp; - Starta nytt recept&lt;/span&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&amp;nbsp; &amp;nbsp; - Redigera existerande recept&lt;br&gt;&amp;nbsp; &amp;nbsp; - Lägg till ingredienser i recept - välj från lista av ingredienser&lt;br&gt;&amp;nbsp; &amp;nbsp; - Registrera matlagningsdetaljer - mängd per ingrediens&lt;/font&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;&amp;nbsp; &amp;nbsp; - Lägg till instruktioner&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&amp;nbsp; &amp;nbsp; - Avsluta redigering av recept&lt;br&gt;&lt;b&gt;- Dataintegritet och felsökning:&lt;br&gt;&lt;/b&gt;&amp;nbsp; &amp;nbsp; - Validering - Ska inte gå att t.ex. använda en negativ mängd av en ingrediens&lt;br&gt;&amp;nbsp; &amp;nbsp; - Felåterkoppling - Användaren bör få tillbaka information om något gick fel&lt;br&gt;- Synkronisering och lagring:&lt;br&gt;&amp;nbsp; &amp;nbsp; - Lokal lagring - Informationen i appen lagras lokalt på enheten&lt;/font&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px; font-size: 15px;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/blockquote&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;sketch=1;curveFitting=1;jiggle=2;shadow=0;align=left;perimeterSpacing=0;glass=0;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="839" y="1265" width="600" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-127" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;edgeStyle=orthogonalEdgeStyle;" parent="1" target="bqATVecDFZBd0OB_Plpx-125" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1290" y="1330" as="sourcePoint" />
+            <mxPoint x="1479" y="1325" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1289" y="1330" />
+              <mxPoint x="1490" y="1330" />
+              <mxPoint x="1490" y="1585" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-128" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;size=0;strokeWidth=3;fillColor=#f8cecc;strokeColor=#b85450;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
+          <mxGeometry x="1350" y="1350" width="60" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-129" value="" style="endArrow=none;html=1;rounded=0;entryX=-0.029;entryY=0.422;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.002;exitY=0.547;exitDx=0;exitDy=0;exitPerimeter=0;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-128" target="bqATVecDFZBd0OB_Plpx-124" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1269" y="1335" as="sourcePoint" />
+            <mxPoint x="1557" y="1142" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-131" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" parent="1" source="bqATVecDFZBd0OB_Plpx-130" target="bqATVecDFZBd0OB_Plpx-123" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1079" y="1085" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="750" y="1555" />
+              <mxPoint x="750" y="1075" />
+              <mxPoint x="1604" y="1075" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-130" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;size=0.5;" parent="1" vertex="1">
+          <mxGeometry x="849" y="1480" width="30" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-135" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;size=0;strokeWidth=3;fillColor=#f8cecc;strokeColor=#b85450;sketch=1;curveFitting=1;jiggle=2;" parent="1" vertex="1">
+          <mxGeometry x="1390" y="1620" width="30" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="bqATVecDFZBd0OB_Plpx-136" value="" style="endArrow=none;html=1;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;edgeStyle=orthogonalEdgeStyle;" parent="1" target="bqATVecDFZBd0OB_Plpx-83" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1420" y="1660" as="sourcePoint" />
+            <mxPoint x="1829" y="1444.9999999999998" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1860" y="1659" />
+              <mxPoint x="1860" y="1490" />
+              <mxPoint x="2030" y="1490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IBTL42P-dhMwbu7w-Mex-1" value="MODEL" style="rounded=0;whiteSpace=wrap;html=1;horizontal=0;fontSize=24;sketch=1;curveFitting=1;jiggle=2;fillColor=#f0a30a;fontColor=#000000;strokeColor=#BD7000;spacingLeft=10;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="615" y="340" width="51" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="IBTL42P-dhMwbu7w-Mex-2" value="VIEW" style="rounded=0;whiteSpace=wrap;html=1;horizontal=0;fontSize=24;sketch=1;curveFitting=1;jiggle=2;fillColor=#b0e3e6;strokeColor=#0e8088;spacingLeft=10;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="615" y="160" width="51" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="IBTL42P-dhMwbu7w-Mex-3" value="CONTROLLER" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;fontSize=24;sketch=1;curveFitting=1;jiggle=2;fillColor=#6d8764;fontColor=#030303;strokeColor=#3A5431;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;spacingRight=0;spacingLeft=10;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="685" y="260" width="51" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IBTL42P-dhMwbu7w-Mex-7" value="&lt;b&gt;Layered Architecture&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;sketch=1;curveFitting=1;jiggle=2;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-35" y="70" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IBTL42P-dhMwbu7w-Mex-8" value="&lt;b&gt;MVC&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;sketch=1;curveFitting=1;jiggle=2;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="604" y="70" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IBTL42P-dhMwbu7w-Mex-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=2;" edge="1" parent="1" source="IBTL42P-dhMwbu7w-Mex-3" target="IBTL42P-dhMwbu7w-Mex-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IBTL42P-dhMwbu7w-Mex-11" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;strokeWidth=4;" vertex="1" parent="1">
+          <mxGeometry x="680" y="350" width="50" height="185" as="geometry" />
+        </mxCell>
+        <mxCell id="IBTL42P-dhMwbu7w-Mex-12" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Abstractable&lt;br&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="779" y="427.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="IBTL42P-dhMwbu7w-Mex-13" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;strokeWidth=4;" vertex="1" parent="1">
+          <mxGeometry x="680" y="550" width="50" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="IBTL42P-dhMwbu7w-Mex-14" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Generally 3rd party software, mongodb, redis, sqlite, etc.&lt;br&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="730" y="550" width="246" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="IBTL42P-dhMwbu7w-Mex-17" value="&lt;b&gt;&lt;font color=&quot;#4f5254&quot;&gt;Ej nödvändigt för modellering&lt;/font&gt;&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;textOpacity=30;" vertex="1" parent="1">
+          <mxGeometry x="2300" y="1490" width="170" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
