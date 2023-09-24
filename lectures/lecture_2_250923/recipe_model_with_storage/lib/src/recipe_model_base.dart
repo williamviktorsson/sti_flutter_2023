@@ -1,59 +1,54 @@
-import 'package:uuid/uuid.dart';
+enum MeasurementUnit { tsk, msk, dl, cl, undefined }
 
-part 'recipe_model_interfaces.dart';
-
-class Ingredient implements IIngredient {
+class Ingredient {
   final String id;
   final String name;
   final String description;
-  final IIngredientAmount? defaultAmount;
+  final IngredientAmount? defaultAmount;
 
   Ingredient({
-    String? id,
+    required this.id,
     required this.name,
     required this.description,
     this.defaultAmount,
-  }) : id = id ?? Uuid().v4();
+  });
 }
 
-class IngredientAmount implements IIngredientAmount {
+class IngredientAmount {
   final double amount;
   final MeasurementUnit unit;
 
   IngredientAmount({required this.amount, required this.unit});
 }
 
-class Recipe implements IRecipe {
+class Recipe {
   final String id;
   final String name;
   final String description;
-  final Map<IIngredient, IIngredientAmount> ingredients;
-  final List<String> descriptions;
+  final Map<Ingredient, IngredientAmount> ingredients;
+  final List<String> instructions;
 
   Recipe(
-      {String? id,
+      {required this.id,
       required this.name,
       required this.description,
-      Map<IIngredient, IIngredientAmount>? ingredients,
-      List<String>? descriptions})
-      : id = id ?? Uuid().v4(),
-        ingredients = ingredients ?? {},
-        descriptions = descriptions ?? [];
+      required this.ingredients,
+      required this.instructions});
 
-  addIngredient(IIngredient ingredient, IIngredientAmount amount) {
+  addIngredient(Ingredient ingredient, IngredientAmount amount) {
     ingredients[ingredient] = amount;
   }
 
   addDescription(String description) {
-    descriptions.add(description);
+    instructions.add(description);
   }
 }
 
-class RecipeRepository implements IRecipeRepository {
-  final List<IRecipe> _recipes = [];
+class RecipeRepository {
+  final List<Recipe> _recipes = [];
 
-  @override
-  bool create(IRecipe recipe) {
+
+  bool create(Recipe recipe) {
     if (_recipes.any((r) => r.id == recipe.id)) {
       return false;
     }
@@ -61,8 +56,8 @@ class RecipeRepository implements IRecipeRepository {
     return true;
   }
 
-  @override
-  IRecipe? read(String id) {
+  
+  Recipe? read(String id) {
     int index = _recipes.indexWhere((r) => r.id == id);
     if (index == -1) {
       return null;
@@ -70,8 +65,8 @@ class RecipeRepository implements IRecipeRepository {
     return _recipes[index];
   }
 
-  @override
-  IRecipe update(IRecipe recipe) {
+  
+  Recipe update(Recipe recipe) {
     int index = _recipes.indexWhere((r) => r.id == recipe.id);
     if (index == -1) {
       throw Exception('Recipe not found');
@@ -80,7 +75,7 @@ class RecipeRepository implements IRecipeRepository {
     return _recipes[index];
   }
 
-  @override
+  
   bool delete(String id) {
     int index = _recipes.indexWhere((r) => r.id == id);
     if (index >= 0) {
@@ -90,6 +85,6 @@ class RecipeRepository implements IRecipeRepository {
     return false;
   }
 
-  @override
-  List<IRecipe> list() => List.of(_recipes);
+  
+  List<Recipe> list() => List.of(_recipes);
 }

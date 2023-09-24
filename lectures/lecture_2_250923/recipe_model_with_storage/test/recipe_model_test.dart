@@ -1,5 +1,6 @@
 import 'package:recipe_model/recipe_model.dart';
 import 'package:test/test.dart';
+import 'package:uuid/uuid.dart';
 
 void main() {
   group('Recipe tests', () {
@@ -11,18 +12,19 @@ void main() {
 
     test('Create Ingredient', () {
       Ingredient ingredient =
-          Ingredient(name: "Salt", description: "description");
+          Ingredient(id: "asd", name: "Salt", description: "description");
       expect(ingredient, isNotNull);
     });
 
     test('Edit Recipe', () {
-      IRecipe recipe = Recipe(
-        id: "1258",
-        name: "goda köttbullar",
-        description: "supergoda",
-      );
+      Recipe recipe = Recipe(
+          id: "1258",
+          name: "goda köttbullar",
+          description: "supergoda",
+          ingredients: {},
+          instructions: []);
       Ingredient ingredient =
-          Ingredient(name: "Salt", description: "description");
+          Ingredient(id: "asdas", name: "Salt", description: "description");
       recipe.addIngredient(
           ingredient, IngredientAmount(amount: 2, unit: MeasurementUnit.tsk));
       recipe.addDescription("Add salt while cooking");
@@ -38,15 +40,16 @@ void main() {
       expect(saltAmount?.unit, equals(MeasurementUnit.tsk));
 
       // Check that the description was added
-      expect(recipe.descriptions, contains("Add salt while cooking"));
+      expect(recipe.instructions, contains("Add salt while cooking"));
     });
 
     test('Add Recipe to Repository', () {
       var recipe = Recipe(
-        id: "2222",
-        name: "pancakes",
-        description: "fluffy pancakes",
-      );
+          id: "2222",
+          name: "pancakes",
+          description: "fluffy pancakes",
+          instructions: [],
+          ingredients: {});
       bool result = repository.create(recipe);
       expect(result, isTrue);
     });
@@ -60,10 +63,11 @@ void main() {
 
     test('Update Recipe in Repository', () {
       var updatedRecipe = Recipe(
-        id: "2222",
-        name: "pancakes",
-        description: "extra fluffy pancakes",
-      );
+          id: "2222",
+          name: "pancakes",
+          description: "extra fluffy pancakes",
+          ingredients: {},
+          instructions: []);
       var returnedRecipe = repository.update(updatedRecipe);
       expect(returnedRecipe.description, equals("extra fluffy pancakes"));
     });
