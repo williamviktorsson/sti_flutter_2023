@@ -5,6 +5,8 @@ import 'package:hive/hive.dart';
 
 enum MeasurementUnit { tsk, msk, dl, cl, undefined }
 
+
+
 class Ingredient {
   final String id;
   final String name;
@@ -35,8 +37,17 @@ class Ingredient {
         'description': description,
         'defaultAmount': defaultAmount?.toJson(),
       };
-}
 
+  String serialize() {
+    final json = toJson();
+    final string = jsonEncode(json);
+    return string;
+  }
+
+  factory Ingredient.deserialize(String serialized) {
+    return Ingredient.fromJson(jsonDecode(serialized));
+  }
+}
 
 class IngredientAmount {
   final double amount;
@@ -90,10 +101,6 @@ class Recipe {
     );
   }
 
-  factory Recipe.deserialize(String serialized) {
-    return Recipe.fromJson(jsonDecode(serialized));
-  }
-
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
@@ -106,6 +113,9 @@ class Recipe {
       };
 
   String serialize() => jsonEncode(toJson());
+  factory Recipe.deserialize(String serialized) {
+    return Recipe.fromJson(jsonDecode(serialized));
+  }
 
   addIngredient(Ingredient ingredient, IngredientAmount amount) {
     ingredients[ingredient] = amount;
@@ -126,6 +136,7 @@ class RecipeRepository {
   }
 
   Future<void> initialize() async {
+    // asynkron operation, tar obestämd (men snabb) tid att öppna vår datalagring.
     _recipeBox = await Hive.openBox('recipes');
   }
 
