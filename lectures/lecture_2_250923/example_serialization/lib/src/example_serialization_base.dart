@@ -66,10 +66,25 @@ class ExampleHolder {
   factory ExampleHolder.deserialize(String serialized) {
     return ExampleHolder.fromJson(jsonDecode(serialized));
   }
+  ExampleHolder copyWith({String? id, List<Example>? examples}) {
+    return ExampleHolder(
+        id: id ?? this.id, examples: examples ?? this.examples);
+  }
+}
+
+void main(List<String> args) {
+  ExampleHolder temp = ExampleHolder(id: "123");
+
+  // Den här typen av operationer kommer vårt bloc utföra när actions skickas från gui
+
+  ExampleHolder changed = temp.copyWith(
+      examples: [...temp.examples, Example(name: "name", id: "123123id")]);
+
+  // sedan sparas förändringarna via repo
 }
 
 class ExampleRepository {
-  late Box<String> _exampleBox;
+  late Box<String> _exampleBox; // late = promise that it WILL BE SET before use
 
   ExampleRepository() {
     Directory directory = Directory.current;
@@ -77,6 +92,7 @@ class ExampleRepository {
   }
 
   Future<void> initialize() async {
+    //: potential race condition if initialize is unawaited in application
     _exampleBox = await Hive.openBox('examples');
   }
 

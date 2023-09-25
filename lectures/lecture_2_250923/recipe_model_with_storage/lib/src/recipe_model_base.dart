@@ -119,6 +119,11 @@ class Recipe {
 
   addIngredient(Ingredient ingredient, IngredientAmount amount) {
     ingredients[ingredient] = amount;
+    // simply updates the object
+    // nit (petig) : modifyable object???
+
+    // do not necessarily update the Recipe repo from here
+    // do if you want to, use observer/observable pattern and notify listeners of a change
   }
 
   addDescription(String description) {
