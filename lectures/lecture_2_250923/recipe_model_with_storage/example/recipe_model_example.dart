@@ -1,8 +1,10 @@
 import 'package:recipe_model/recipe_model.dart';
 
-void main() {
+void main() async {
   // Initialize a RecipeRepository
   RecipeRepository repository = RecipeRepository();
+
+  await repository.initialize();
 
   // Create a few Ingredients
   Ingredient meatballIngredient =
@@ -59,4 +61,8 @@ void main() {
   // List all the recipes in the repository
   List<Recipe> allRecipes = repository.list();
   print('Number of recipes in repository: ${allRecipes.length}');
+
+  bool isDeleted = repository.delete(meatballRecipe.id);
+  print('Recipe deletec from repository: $isDeleted');
+
 }

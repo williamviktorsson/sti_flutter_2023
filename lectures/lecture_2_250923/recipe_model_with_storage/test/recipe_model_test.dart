@@ -6,8 +6,9 @@ void main() {
   group('Recipe tests', () {
     final repository = RecipeRepository();
 
-    setUp(() {
+    setUp(() async {
       // Additional setup goes here.
+      await repository.initialize();
     });
 
     test('Create Ingredient', () {
