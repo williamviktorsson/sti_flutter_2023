@@ -33,8 +33,8 @@ void main() {
       saltIngredient, IngredientAmount(amount: 1, unit: MeasurementUnit.tsk));
 
   // Add description steps to the recipe
-  meatballRecipe.addDescription("Add 10 meatballs");
-  meatballRecipe.addDescription("Add a teaspoon of salt");
+  meatballRecipe.addInstruction("Add 10 meatballs");
+  meatballRecipe.addInstruction("Add a teaspoon of salt");
 
   // Finish editing
 

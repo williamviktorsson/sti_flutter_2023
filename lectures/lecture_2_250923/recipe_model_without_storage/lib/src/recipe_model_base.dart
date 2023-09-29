@@ -39,14 +39,13 @@ class Recipe {
     ingredients[ingredient] = amount;
   }
 
-  addDescription(String description) {
+  addInstruction(String description) {
     instructions.add(description);
   }
 }
 
 class RecipeRepository {
   final List<Recipe> _recipes = [];
-
 
   bool create(Recipe recipe) {
     if (_recipes.any((r) => r.id == recipe.id)) {
@@ -56,7 +55,6 @@ class RecipeRepository {
     return true;
   }
 
-  
   Recipe? read(String id) {
     int index = _recipes.indexWhere((r) => r.id == id);
     if (index == -1) {
@@ -65,7 +63,6 @@ class RecipeRepository {
     return _recipes[index];
   }
 
-  
   Recipe update(Recipe recipe) {
     int index = _recipes.indexWhere((r) => r.id == recipe.id);
     if (index == -1) {
@@ -75,7 +72,6 @@ class RecipeRepository {
     return _recipes[index];
   }
 
-  
   bool delete(String id) {
     int index = _recipes.indexWhere((r) => r.id == id);
     if (index >= 0) {
@@ -85,6 +81,5 @@ class RecipeRepository {
     return false;
   }
 
-  
   List<Recipe> list() => List.of(_recipes);
 }

@@ -128,6 +128,10 @@ class Recipe {
     instructions.add(instruction);
   }
 
+  void addIngredient(Ingredient ingredient, IngredientAmount amount) {
+    ingredients[ingredient] = amount;
+  }
+
   // sätt att underlätta modifiering av objekt
   // 1. mutera objektet rakt av. T.ex. via
   // fördelar: överenstämmer med mångas bild av oop, objektet definierar själv hur det kan modifieras
@@ -149,9 +153,6 @@ class Recipe {
   // känns fel
 
   // 3. Hjälpklass för att utföra uppdateringar, skicka in objektet och få tillbaka en uppdaterad version. Fungerar vid immutability
-
-  
-
 }
 
 void main(List<String> args) {
@@ -164,7 +165,6 @@ void main(List<String> args) {
 
   print(recipe.serialize());
 }
-
 
 class RecipeRepository {
   late Box<String> _recipeBox;

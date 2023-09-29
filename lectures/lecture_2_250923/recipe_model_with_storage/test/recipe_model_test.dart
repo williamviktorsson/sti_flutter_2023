@@ -28,7 +28,7 @@ void main() {
           Ingredient(id: "asdas", name: "Salt", description: "description");
       recipe.addIngredient(
           ingredient, IngredientAmount(amount: 2, unit: MeasurementUnit.tsk));
-      recipe.addDescription("Add salt while cooking");
+      recipe.addInstruction("Add salt while cooking");
 
       // Check that the manager's current recipe is the same as our recipe
       expect(recipe.id, equals(recipe.id));
