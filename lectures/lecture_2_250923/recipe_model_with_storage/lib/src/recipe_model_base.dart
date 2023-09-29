@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:hive/hive.dart';
+import 'package:meta/meta.dart';
 
 enum MeasurementUnit { tsk, msk, dl, cl, undefined }
 
-
-
+@immutable
 class Ingredient {
   final String id;
   final String name;
@@ -68,20 +68,27 @@ class IngredientAmount {
       };
 }
 
+@immutable
 class Recipe {
   final String id;
   final String name;
   final String description;
-  final Map<Ingredient, IngredientAmount> ingredients;
-  final List<String> instructions;
+  final Map<Ingredient, IngredientAmount> _ingredients;
+  final List<String> _instructions;
 
+  List<String> get instructions => List.unmodifiable(_instructions);
+  Map<Ingredient, IngredientAmount> get ingredients =>
+      Map.unmodifiable(_ingredients);
+
+  // const here does not guarantee that instructions/ingredients is immutable
   Recipe({
     required this.id,
     required this.name,
     required this.description,
-    required this.ingredients,
-    required this.instructions,
-  });
+    required Map<Ingredient, IngredientAmount> ingredients,
+    required List<String> instructions,
+  })  : _ingredients = ingredients,
+        _instructions = instructions;
 
   factory Recipe.fromJson(Map<String, dynamic> json) {
     Map<Ingredient, IngredientAmount> ingredients = {};
@@ -117,19 +124,47 @@ class Recipe {
     return Recipe.fromJson(jsonDecode(serialized));
   }
 
-  addIngredient(Ingredient ingredient, IngredientAmount amount) {
-    ingredients[ingredient] = amount;
-    // simply updates the object
-    // nit (petig) : modifyable object???
-
-    // do not necessarily update the Recipe repo from here
-    // do if you want to, use observer/observable pattern and notify listeners of a change
+  void addInstruction(String instruction) {
+    instructions.add(instruction);
   }
 
-  addDescription(String description) {
-    instructions.add(description);
-  }
+  // sätt att underlätta modifiering av objekt
+  // 1. mutera objektet rakt av. T.ex. via
+  // fördelar: överenstämmer med mångas bild av oop, objektet definierar själv hur det kan modifieras
+  // fördelar: läsbart
+  // fördelar: enkelt
+  // fördelar: solid? SRP?
+
+  // nackdelar: muterbarhet KAN vara en oönskad egenskap
+  // Premature optimization ?
+  // KISS  ?
+  // YAGNI ?
+
+  // farliga saker med muterbart data
+  // 1. gui operationer ändrar datat där det cacheat (sidoeffekt)
+  // - filtrerar en lista (filtrerar också cachead lista)
+  // - vanligt om man inte är super pedantisk
+
+  // 2. Mutera objektet i klassen, MEN returnera ett nytt objekt (bryter till viss del oop-principer)
+  // känns fel
+
+  // 3. Hjälpklass för att utföra uppdateringar, skicka in objektet och få tillbaka en uppdaterad version. Fungerar vid immutability
+
+  
+
 }
+
+void main(List<String> args) {
+  Recipe recipe = Recipe(
+      id: "id",
+      name: "name",
+      description: "description",
+      ingredients: {},
+      instructions: []);
+
+  print(recipe.serialize());
+}
+
 
 class RecipeRepository {
   late Box<String> _recipeBox;
