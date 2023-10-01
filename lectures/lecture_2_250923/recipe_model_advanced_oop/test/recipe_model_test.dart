@@ -115,6 +115,8 @@ void main() {
         instructions: ['Add sea salt to taste.'],
       );
 
+      updatedRecipe.addInstruction("instruction");
+
       final result = await recipeRepo.update('1', updatedRecipe);
       expect(result.isSuccess, isTrue);
     });

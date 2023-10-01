@@ -6,6 +6,9 @@ import 'package:meta/meta.dart';
 
 enum MeasurementUnit { tsk, msk, dl, cl, undefined }
 
+
+
+
 @immutable
 class Ingredient {
   final String id;
@@ -18,7 +21,7 @@ class Ingredient {
     required this.name,
     required this.description,
     this.defaultAmount,
-  });
+  });        
 
   factory Ingredient.fromJson(Map<String, dynamic> json) {
     return Ingredient(
@@ -155,16 +158,6 @@ class Recipe {
   // 3. Hjälpklass för att utföra uppdateringar, skicka in objektet och få tillbaka en uppdaterad version. Fungerar vid immutability
 }
 
-void main(List<String> args) {
-  Recipe recipe = Recipe(
-      id: "id",
-      name: "name",
-      description: "description",
-      ingredients: {},
-      instructions: []);
-
-  print(recipe.serialize());
-}
 
 class RecipeRepository {
   late Box<String> _recipeBox;

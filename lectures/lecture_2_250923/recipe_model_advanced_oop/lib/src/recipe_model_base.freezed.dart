@@ -91,11 +91,11 @@ class _$IngredientCopyWithImpl<$Res, $Val extends Ingredient>
 }
 
 /// @nodoc
-abstract class _$$_IngredientCopyWith<$Res>
+abstract class _$$IngredientImplCopyWith<$Res>
     implements $IngredientCopyWith<$Res> {
-  factory _$$_IngredientCopyWith(
-          _$_Ingredient value, $Res Function(_$_Ingredient) then) =
-      __$$_IngredientCopyWithImpl<$Res>;
+  factory _$$IngredientImplCopyWith(
+          _$IngredientImpl value, $Res Function(_$IngredientImpl) then) =
+      __$$IngredientImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -107,11 +107,11 @@ abstract class _$$_IngredientCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_IngredientCopyWithImpl<$Res>
-    extends _$IngredientCopyWithImpl<$Res, _$_Ingredient>
-    implements _$$_IngredientCopyWith<$Res> {
-  __$$_IngredientCopyWithImpl(
-      _$_Ingredient _value, $Res Function(_$_Ingredient) _then)
+class __$$IngredientImplCopyWithImpl<$Res>
+    extends _$IngredientCopyWithImpl<$Res, _$IngredientImpl>
+    implements _$$IngredientImplCopyWith<$Res> {
+  __$$IngredientImplCopyWithImpl(
+      _$IngredientImpl _value, $Res Function(_$IngredientImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -123,7 +123,7 @@ class __$$_IngredientCopyWithImpl<$Res>
     Object? defaultAmount = freezed,
     Object? defaultUnit = freezed,
   }) {
-    return _then(_$_Ingredient(
+    return _then(_$IngredientImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -150,16 +150,17 @@ class __$$_IngredientCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Ingredient implements _Ingredient {
-  const _$_Ingredient(
+class _$IngredientImpl extends _Ingredient {
+  const _$IngredientImpl(
       {required this.id,
       required this.name,
       required this.description,
       this.defaultAmount,
-      this.defaultUnit});
+      this.defaultUnit})
+      : super._();
 
-  factory _$_Ingredient.fromJson(Map<String, dynamic> json) =>
-      _$$_IngredientFromJson(json);
+  factory _$IngredientImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IngredientImplFromJson(json);
 
   @override
   final String id;
@@ -181,7 +182,7 @@ class _$_Ingredient implements _Ingredient {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Ingredient &&
+            other is _$IngredientImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
@@ -200,27 +201,28 @@ class _$_Ingredient implements _Ingredient {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IngredientCopyWith<_$_Ingredient> get copyWith =>
-      __$$_IngredientCopyWithImpl<_$_Ingredient>(this, _$identity);
+  _$$IngredientImplCopyWith<_$IngredientImpl> get copyWith =>
+      __$$IngredientImplCopyWithImpl<_$IngredientImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_IngredientToJson(
+    return _$$IngredientImplToJson(
       this,
     );
   }
 }
 
-abstract class _Ingredient implements Ingredient, IIngredient {
+abstract class _Ingredient extends Ingredient implements IIngredient {
   const factory _Ingredient(
       {required final String id,
       required final String name,
       required final String description,
       final int? defaultAmount,
-      final MeasurementUnit? defaultUnit}) = _$_Ingredient;
+      final MeasurementUnit? defaultUnit}) = _$IngredientImpl;
+  const _Ingredient._() : super._();
 
   factory _Ingredient.fromJson(Map<String, dynamic> json) =
-      _$_Ingredient.fromJson;
+      _$IngredientImpl.fromJson;
 
   @override
   String get id;
@@ -234,7 +236,7 @@ abstract class _Ingredient implements Ingredient, IIngredient {
   MeasurementUnit? get defaultUnit;
   @override
   @JsonKey(ignore: true)
-  _$$_IngredientCopyWith<_$_Ingredient> get copyWith =>
+  _$$IngredientImplCopyWith<_$IngredientImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -308,11 +310,11 @@ class _$RecipeStepCopyWithImpl<$Res, $Val extends RecipeStep>
 }
 
 /// @nodoc
-abstract class _$$_RecipeStepCopyWith<$Res>
+abstract class _$$RecipeStepImplCopyWith<$Res>
     implements $RecipeStepCopyWith<$Res> {
-  factory _$$_RecipeStepCopyWith(
-          _$_RecipeStep value, $Res Function(_$_RecipeStep) then) =
-      __$$_RecipeStepCopyWithImpl<$Res>;
+  factory _$$RecipeStepImplCopyWith(
+          _$RecipeStepImpl value, $Res Function(_$RecipeStepImpl) then) =
+      __$$RecipeStepImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Ingredient ingredient, MeasurementUnit unit, int amount});
@@ -322,11 +324,11 @@ abstract class _$$_RecipeStepCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_RecipeStepCopyWithImpl<$Res>
-    extends _$RecipeStepCopyWithImpl<$Res, _$_RecipeStep>
-    implements _$$_RecipeStepCopyWith<$Res> {
-  __$$_RecipeStepCopyWithImpl(
-      _$_RecipeStep _value, $Res Function(_$_RecipeStep) _then)
+class __$$RecipeStepImplCopyWithImpl<$Res>
+    extends _$RecipeStepCopyWithImpl<$Res, _$RecipeStepImpl>
+    implements _$$RecipeStepImplCopyWith<$Res> {
+  __$$RecipeStepImplCopyWithImpl(
+      _$RecipeStepImpl _value, $Res Function(_$RecipeStepImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -336,7 +338,7 @@ class __$$_RecipeStepCopyWithImpl<$Res>
     Object? unit = null,
     Object? amount = null,
   }) {
-    return _then(_$_RecipeStep(
+    return _then(_$RecipeStepImpl(
       ingredient: null == ingredient
           ? _value.ingredient
           : ingredient // ignore: cast_nullable_to_non_nullable
@@ -355,12 +357,12 @@ class __$$_RecipeStepCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RecipeStep implements _RecipeStep {
-  const _$_RecipeStep(
+class _$RecipeStepImpl implements _RecipeStep {
+  const _$RecipeStepImpl(
       {required this.ingredient, required this.unit, required this.amount});
 
-  factory _$_RecipeStep.fromJson(Map<String, dynamic> json) =>
-      _$$_RecipeStepFromJson(json);
+  factory _$RecipeStepImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RecipeStepImplFromJson(json);
 
   @override
   final Ingredient ingredient;
@@ -378,7 +380,7 @@ class _$_RecipeStep implements _RecipeStep {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RecipeStep &&
+            other is _$RecipeStepImpl &&
             (identical(other.ingredient, ingredient) ||
                 other.ingredient == ingredient) &&
             (identical(other.unit, unit) || other.unit == unit) &&
@@ -392,12 +394,12 @@ class _$_RecipeStep implements _RecipeStep {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RecipeStepCopyWith<_$_RecipeStep> get copyWith =>
-      __$$_RecipeStepCopyWithImpl<_$_RecipeStep>(this, _$identity);
+  _$$RecipeStepImplCopyWith<_$RecipeStepImpl> get copyWith =>
+      __$$RecipeStepImplCopyWithImpl<_$RecipeStepImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RecipeStepToJson(
+    return _$$RecipeStepImplToJson(
       this,
     );
   }
@@ -407,10 +409,10 @@ abstract class _RecipeStep implements RecipeStep, IRecipeStep {
   const factory _RecipeStep(
       {required final Ingredient ingredient,
       required final MeasurementUnit unit,
-      required final int amount}) = _$_RecipeStep;
+      required final int amount}) = _$RecipeStepImpl;
 
   factory _RecipeStep.fromJson(Map<String, dynamic> json) =
-      _$_RecipeStep.fromJson;
+      _$RecipeStepImpl.fromJson;
 
   @override
   Ingredient get ingredient;
@@ -420,7 +422,7 @@ abstract class _RecipeStep implements RecipeStep, IRecipeStep {
   int get amount;
   @override
   @JsonKey(ignore: true)
-  _$$_RecipeStepCopyWith<_$_RecipeStep> get copyWith =>
+  _$$RecipeStepImplCopyWith<_$RecipeStepImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -492,9 +494,10 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
 }
 
 /// @nodoc
-abstract class _$$_RecipeCopyWith<$Res> implements $RecipeCopyWith<$Res> {
-  factory _$$_RecipeCopyWith(_$_Recipe value, $Res Function(_$_Recipe) then) =
-      __$$_RecipeCopyWithImpl<$Res>;
+abstract class _$$RecipeImplCopyWith<$Res> implements $RecipeCopyWith<$Res> {
+  factory _$$RecipeImplCopyWith(
+          _$RecipeImpl value, $Res Function(_$RecipeImpl) then) =
+      __$$RecipeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -505,10 +508,11 @@ abstract class _$$_RecipeCopyWith<$Res> implements $RecipeCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_RecipeCopyWithImpl<$Res>
-    extends _$RecipeCopyWithImpl<$Res, _$_Recipe>
-    implements _$$_RecipeCopyWith<$Res> {
-  __$$_RecipeCopyWithImpl(_$_Recipe _value, $Res Function(_$_Recipe) _then)
+class __$$RecipeImplCopyWithImpl<$Res>
+    extends _$RecipeCopyWithImpl<$Res, _$RecipeImpl>
+    implements _$$RecipeImplCopyWith<$Res> {
+  __$$RecipeImplCopyWithImpl(
+      _$RecipeImpl _value, $Res Function(_$RecipeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -519,7 +523,7 @@ class __$$_RecipeCopyWithImpl<$Res>
     Object? instructions = null,
     Object? steps = null,
   }) {
-    return _then(_$_Recipe(
+    return _then(_$RecipeImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -542,17 +546,18 @@ class __$$_RecipeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Recipe implements _Recipe {
-  const _$_Recipe(
+class _$RecipeImpl extends _Recipe {
+  const _$RecipeImpl(
       {required this.name,
       required this.id,
       required final List<String> instructions,
       required final List<RecipeStep> steps})
       : _instructions = instructions,
-        _steps = steps;
+        _steps = steps,
+        super._();
 
-  factory _$_Recipe.fromJson(Map<String, dynamic> json) =>
-      _$$_RecipeFromJson(json);
+  factory _$RecipeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RecipeImplFromJson(json);
 
   @override
   final String name;
@@ -583,7 +588,7 @@ class _$_Recipe implements _Recipe {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Recipe &&
+            other is _$RecipeImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
@@ -603,25 +608,26 @@ class _$_Recipe implements _Recipe {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RecipeCopyWith<_$_Recipe> get copyWith =>
-      __$$_RecipeCopyWithImpl<_$_Recipe>(this, _$identity);
+  _$$RecipeImplCopyWith<_$RecipeImpl> get copyWith =>
+      __$$RecipeImplCopyWithImpl<_$RecipeImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RecipeToJson(
+    return _$$RecipeImplToJson(
       this,
     );
   }
 }
 
-abstract class _Recipe implements Recipe, IRecipe {
+abstract class _Recipe extends Recipe implements IRecipe {
   const factory _Recipe(
       {required final String name,
       required final String id,
       required final List<String> instructions,
-      required final List<RecipeStep> steps}) = _$_Recipe;
+      required final List<RecipeStep> steps}) = _$RecipeImpl;
+  const _Recipe._() : super._();
 
-  factory _Recipe.fromJson(Map<String, dynamic> json) = _$_Recipe.fromJson;
+  factory _Recipe.fromJson(Map<String, dynamic> json) = _$RecipeImpl.fromJson;
 
   @override
   String get name;
@@ -633,6 +639,6 @@ abstract class _Recipe implements Recipe, IRecipe {
   List<RecipeStep> get steps;
   @override
   @JsonKey(ignore: true)
-  _$$_RecipeCopyWith<_$_Recipe> get copyWith =>
+  _$$RecipeImplCopyWith<_$RecipeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

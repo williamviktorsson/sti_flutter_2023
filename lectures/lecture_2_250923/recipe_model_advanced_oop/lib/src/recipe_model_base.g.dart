@@ -6,8 +6,8 @@ part of 'recipe_model_base.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Ingredient _$$_IngredientFromJson(Map<String, dynamic> json) =>
-    _$_Ingredient(
+_$IngredientImpl _$$IngredientImplFromJson(Map<String, dynamic> json) =>
+    _$IngredientImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -16,7 +16,7 @@ _$_Ingredient _$$_IngredientFromJson(Map<String, dynamic> json) =>
           $enumDecodeNullable(_$MeasurementUnitEnumMap, json['defaultUnit']),
     );
 
-Map<String, dynamic> _$$_IngredientToJson(_$_Ingredient instance) =>
+Map<String, dynamic> _$$IngredientImplToJson(_$IngredientImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -36,22 +36,22 @@ const _$MeasurementUnitEnumMap = {
   MeasurementUnit.gram: 'gram',
 };
 
-_$_RecipeStep _$$_RecipeStepFromJson(Map<String, dynamic> json) =>
-    _$_RecipeStep(
+_$RecipeStepImpl _$$RecipeStepImplFromJson(Map<String, dynamic> json) =>
+    _$RecipeStepImpl(
       ingredient:
           Ingredient.fromJson(json['ingredient'] as Map<String, dynamic>),
       unit: $enumDecode(_$MeasurementUnitEnumMap, json['unit']),
       amount: json['amount'] as int,
     );
 
-Map<String, dynamic> _$$_RecipeStepToJson(_$_RecipeStep instance) =>
+Map<String, dynamic> _$$RecipeStepImplToJson(_$RecipeStepImpl instance) =>
     <String, dynamic>{
       'ingredient': instance.ingredient,
       'unit': _$MeasurementUnitEnumMap[instance.unit]!,
       'amount': instance.amount,
     };
 
-_$_Recipe _$$_RecipeFromJson(Map<String, dynamic> json) => _$_Recipe(
+_$RecipeImpl _$$RecipeImplFromJson(Map<String, dynamic> json) => _$RecipeImpl(
       name: json['name'] as String,
       id: json['id'] as String,
       instructions: (json['instructions'] as List<dynamic>)
@@ -62,7 +62,8 @@ _$_Recipe _$$_RecipeFromJson(Map<String, dynamic> json) => _$_Recipe(
           .toList(),
     );
 
-Map<String, dynamic> _$$_RecipeToJson(_$_Recipe instance) => <String, dynamic>{
+Map<String, dynamic> _$$RecipeImplToJson(_$RecipeImpl instance) =>
+    <String, dynamic>{
       'name': instance.name,
       'id': instance.id,
       'instructions': instance.instructions,

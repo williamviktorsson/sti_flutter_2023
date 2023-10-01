@@ -14,6 +14,8 @@ part 'recipe_model_interfaces.dart';
 
 @freezed
 abstract class Ingredient with _$Ingredient implements IIngredient {
+  const Ingredient._();
+
   @Implements<IIngredient>()
   const factory Ingredient({
     required String id,
@@ -42,6 +44,8 @@ abstract class RecipeStep with _$RecipeStep implements IRecipeStep {
 
 @freezed
 abstract class Recipe with _$Recipe implements IRecipe {
+  const Recipe._();
+
   @Implements<IRecipe>()
   const factory Recipe({
     required String name,
@@ -51,6 +55,8 @@ abstract class Recipe with _$Recipe implements IRecipe {
   }) = _Recipe;
 
   factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json);
+
+  addInstruction(String instruction) => instructions.add(instruction);
 }
 
 abstract class HiveRepository<T extends Identifiable>
