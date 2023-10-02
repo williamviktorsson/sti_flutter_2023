@@ -40,53 +40,7 @@ void main() async {
     exit(255);
   }
 
-  // Subscribe to changes in PixelArt
-  final stream = await repository.changes(art.id);
-  final subscription = stream.listen((art) {
-    if (art != null) {
-      print('----> PixelArt Changed:');
-      print(art);
-    } else {
-      print('----> PixelArt Deleted');
-    }
-  });
-
-  // Create a new PixelArt record
-  print('Creating new PixelArt record...');
-  await repository.create(art);
-  print('----> Created.');
-
-  // Read the PixelArt record
-  print('Reading PixelArt record...');
-  final result = await repository.read(art.id);
-  print('----> Read complete:');
-  print(result.value);
-
-  // Update the PixelArt description
-  print('Updating PixelArt description...');
-  art = art.copyWith(description: "changedDesc${uuid.v4()}");
-  await repository.update(art.id, art);
-  print('----> Update complete.');
-
-  // List all PixelArts
-  print('Listing all PixelArts...');
-  await repository.list();
-  print('----> List complete.');
-
-  // Delete the PixelArt
-  print('Deleting PixelArt...');
-  await repository.delete(art.id);
-  print('----> Deletion complete.');
-
-  // List all PixelArts to confirm deletion
-  print('Listing all PixelArts to confirm deletion...');
-  await repository.list();
-  print('----> List complete. Deletion confirmed.');
-
-  // Cancel the subscription to changes
-  print('Canceling subscription...');
-  subscription.cancel();
-  print('----> Subscription canceled.');
+  // TODO: 20. Use the create/read/list/update/delete/changes methods of the repository to show how it is supposed to be used.
 
   // Exit the application
   print('Exiting application.');

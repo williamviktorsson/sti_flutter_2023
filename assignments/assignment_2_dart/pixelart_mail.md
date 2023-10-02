@@ -12,7 +12,7 @@ Kenneth, som var vår huvudutvecklare för vårt PixelArt redigeringsprojekt, ha
 
 Jag vet att detta kanske låter överväldigande, men med tanke på din förmåga att ta tag i Sara-projektet så snabbt, tror jag att du är vår bästa chans att rädda detta projekt. Kenneth har lämnat en `README` i repo't för projektet som ger en översikt av varje del av systemet. Jag rekommenderar att du börjar med det för att få en förståelse för projektets nuvarande status.
 
-Kortfattat handlar det om en klient-serverlösning för redigering av PixelArt i realtid. Såväl klienten som servern verkar vara halvfärdiga med vissa **"TODOs"** markerade. `pixelart_shared` är färdig och används som ett gemensamt bibliotek av de två andra projekten. Det kan vara bra att börja med att köra tester i varje projekt för att se vad som är klart och vad som behöver arbete.
+Kortfattat handlar det om en klient-serverlösning för redigering av PixelArt i realtid. Såväl klienten som servern verkar vara halvfärdiga med vissa **"TODOs"** markerade (20 stycken). `pixelart_shared` är färdig och används som ett gemensamt bibliotek av de två andra projekten. Det kan vara bra att börja med att köra tester i varje projekt för att se vad som är klart och vad som behöver arbete.
 
 Jag vet att detta är mycket att ta in och att det är en utmaning, men jag tror verkligen på dig. Vi kan inte missa denna deadline. Så snälla, gör ditt bästa så ska jag se till att ditt arbete blir uppmärksammat.
 

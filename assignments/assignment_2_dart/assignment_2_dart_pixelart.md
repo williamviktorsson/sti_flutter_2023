@@ -1,6 +1,6 @@
 # Se bifogad mailkorrespondens som instruktion för vad du förväntas göra.
 
-**För godkänt på uppgiften skall alla TODOS (19 stycken) fixas och därmed ska också alla tester godkännas**
+**För godkänt på uppgiften skall alla TODOS (20 stycken) fixas och därmed ska också alla tester godkännas samt att klientens exempelprogram ska utökas**
 
 Du kommer alltså få öva på: 
 - asynkrona anrop
