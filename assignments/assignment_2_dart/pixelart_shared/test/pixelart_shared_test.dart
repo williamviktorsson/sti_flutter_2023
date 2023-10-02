@@ -3,6 +3,8 @@ import 'package:test/test.dart';
 
 void main() {
   group('PixelArt Tests', () {
+ return Future.error(Exception('Issue'));
+
     test('Creation of Participant', () {
       final participant = Participant(id: '1', name: 'John Doe');
       expect(participant.id, '1');
