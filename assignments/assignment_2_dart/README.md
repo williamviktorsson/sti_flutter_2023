@@ -1,4 +1,4 @@
-# Överlämning
+# Överlämning från Kenneth. Läs mailkorrespondens för introduktion.
 
 Projektet är uppdelat i tre dart projekt. `pixelart_shared`, `pixelart_client` och `pixelart_server`.
 
