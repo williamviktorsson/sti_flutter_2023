@@ -35,7 +35,7 @@ class Pixel with _$Pixel {
 class PixelArt with _$PixelArt {
   const PixelArt._();
 
-  @JsonSerializable(explicitToJson: true) // call toJson on collection objects
+  @JsonSerializable(explicitToJson: true) // call toJson on collection objects 
   const factory PixelArt({
     required String id,
     required String name,

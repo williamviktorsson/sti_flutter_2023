@@ -1,5 +1,6 @@
 // ignore_for_file: library_prefixes
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_frog/dart_frog.dart';
@@ -39,8 +40,15 @@ void main() {
     });
 
     test('create and read a PixelArt', () async {
-      // TODO: 1. use the repository and the testpixelart to attempt to create a pixelart, then attempt to read it. Verify responses uing expect
-      fail("unimplemented test");
+      var createResponse = await repository.create(testPixelArt);
+      expect(createResponse.isSuccess, isTrue);
+
+      var response = await repository.read(testPixelArt.id);
+
+      expect(response.isSuccess, isTrue);
+      expect(response.isFailure, isFalse);
+      expect(response.status, equals(CRUDStatus.Success));
+      expect(response.value, equals(testPixelArt));
     });
 
     test('update a PixelArt', () async {
@@ -159,6 +167,9 @@ void main() {
       final response = await pixelArtRoute.onRequest(context);
       expect(response.statusCode, equals(HttpStatus.ok));
       // TODO 3. Check response body for serialized PixelArt.
+      var body = await response.body();
+      
+      expect(body, art.serialize());
     });
 
     test('GET /:id - reads a PixelArt', () async {
@@ -168,6 +179,8 @@ void main() {
       final response = await pixelArtSlugRoute.onRequest(context, art.id);
       expect(response.statusCode, equals(HttpStatus.ok));
       // TODO 4. Check response body for serialized PixelArt.
+      var source = await response.body();
+      expect(source, art.serialize());
     });
 
     test('PUT /:id - updates a PixelArt', () async {
@@ -178,6 +191,8 @@ void main() {
       final response = await pixelArtSlugRoute.onRequest(context, art.id);
       expect(response.statusCode, equals(HttpStatus.ok));
       // TODO 5. Check response body for serialized PixelArt.
+      var source = await response.body();
+      expect(source, art.serialize());
     });
 
     test('DELETE /:id - deletes a PixelArt', () async {
@@ -201,7 +216,12 @@ void main() {
 
       final response = await pixelArtRoute.onRequest(context);
       expect(response.statusCode, equals(HttpStatus.ok));
-      // TODO 6. Check response body for list of PixelArt.
+      // TODO: 6. Check response body for serialized list of PixelArt.
+      var source = await response.body();
+      List<dynamic> body = jsonDecode(source);
+      List<PixelArt> items =
+          body.map((e) => PixelArt.deserialize(e as String)).toList();
+      expect(items, isA<List<PixelArt>>());
     });
 
     test('GET / - stream returns 404 for invalid ws request', () async {

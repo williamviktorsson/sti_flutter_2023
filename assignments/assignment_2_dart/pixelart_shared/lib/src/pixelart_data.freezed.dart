@@ -68,22 +68,22 @@ class _$ParticipantCopyWithImpl<$Res, $Val extends Participant>
 }
 
 /// @nodoc
-abstract class _$$ParticipantImplCopyWith<$Res>
+abstract class _$$_ParticipantCopyWith<$Res>
     implements $ParticipantCopyWith<$Res> {
-  factory _$$ParticipantImplCopyWith(
-          _$ParticipantImpl value, $Res Function(_$ParticipantImpl) then) =
-      __$$ParticipantImplCopyWithImpl<$Res>;
+  factory _$$_ParticipantCopyWith(
+          _$_Participant value, $Res Function(_$_Participant) then) =
+      __$$_ParticipantCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String name});
 }
 
 /// @nodoc
-class __$$ParticipantImplCopyWithImpl<$Res>
-    extends _$ParticipantCopyWithImpl<$Res, _$ParticipantImpl>
-    implements _$$ParticipantImplCopyWith<$Res> {
-  __$$ParticipantImplCopyWithImpl(
-      _$ParticipantImpl _value, $Res Function(_$ParticipantImpl) _then)
+class __$$_ParticipantCopyWithImpl<$Res>
+    extends _$ParticipantCopyWithImpl<$Res, _$_Participant>
+    implements _$$_ParticipantCopyWith<$Res> {
+  __$$_ParticipantCopyWithImpl(
+      _$_Participant _value, $Res Function(_$_Participant) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$ParticipantImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$ParticipantImpl(
+    return _then(_$_Participant(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -107,11 +107,11 @@ class __$$ParticipantImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ParticipantImpl implements _Participant {
-  const _$ParticipantImpl({required this.id, required this.name});
+class _$_Participant implements _Participant {
+  const _$_Participant({required this.id, required this.name});
 
-  factory _$ParticipantImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ParticipantImplFromJson(json);
+  factory _$_Participant.fromJson(Map<String, dynamic> json) =>
+      _$$_ParticipantFromJson(json);
 
   @override
   final String id;
@@ -127,7 +127,7 @@ class _$ParticipantImpl implements _Participant {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ParticipantImpl &&
+            other is _$_Participant &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -139,12 +139,12 @@ class _$ParticipantImpl implements _Participant {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ParticipantImplCopyWith<_$ParticipantImpl> get copyWith =>
-      __$$ParticipantImplCopyWithImpl<_$ParticipantImpl>(this, _$identity);
+  _$$_ParticipantCopyWith<_$_Participant> get copyWith =>
+      __$$_ParticipantCopyWithImpl<_$_Participant>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ParticipantImplToJson(
+    return _$$_ParticipantToJson(
       this,
     );
   }
@@ -152,11 +152,10 @@ class _$ParticipantImpl implements _Participant {
 
 abstract class _Participant implements Participant {
   const factory _Participant(
-      {required final String id,
-      required final String name}) = _$ParticipantImpl;
+      {required final String id, required final String name}) = _$_Participant;
 
   factory _Participant.fromJson(Map<String, dynamic> json) =
-      _$ParticipantImpl.fromJson;
+      _$_Participant.fromJson;
 
   @override
   String get id;
@@ -164,7 +163,7 @@ abstract class _Participant implements Participant {
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$$ParticipantImplCopyWith<_$ParticipantImpl> get copyWith =>
+  _$$_ParticipantCopyWith<_$_Participant> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -248,10 +247,9 @@ class _$PixelCopyWithImpl<$Res, $Val extends Pixel>
 }
 
 /// @nodoc
-abstract class _$$PixelImplCopyWith<$Res> implements $PixelCopyWith<$Res> {
-  factory _$$PixelImplCopyWith(
-          _$PixelImpl value, $Res Function(_$PixelImpl) then) =
-      __$$PixelImplCopyWithImpl<$Res>;
+abstract class _$$_PixelCopyWith<$Res> implements $PixelCopyWith<$Res> {
+  factory _$$_PixelCopyWith(_$_Pixel value, $Res Function(_$_Pixel) then) =
+      __$$_PixelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int red, int green, int blue, int alpha, Participant placedBy});
@@ -261,11 +259,9 @@ abstract class _$$PixelImplCopyWith<$Res> implements $PixelCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$PixelImplCopyWithImpl<$Res>
-    extends _$PixelCopyWithImpl<$Res, _$PixelImpl>
-    implements _$$PixelImplCopyWith<$Res> {
-  __$$PixelImplCopyWithImpl(
-      _$PixelImpl _value, $Res Function(_$PixelImpl) _then)
+class __$$_PixelCopyWithImpl<$Res> extends _$PixelCopyWithImpl<$Res, _$_Pixel>
+    implements _$$_PixelCopyWith<$Res> {
+  __$$_PixelCopyWithImpl(_$_Pixel _value, $Res Function(_$_Pixel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -277,7 +273,7 @@ class __$$PixelImplCopyWithImpl<$Res>
     Object? alpha = null,
     Object? placedBy = null,
   }) {
-    return _then(_$PixelImpl(
+    return _then(_$_Pixel(
       red: null == red
           ? _value.red
           : red // ignore: cast_nullable_to_non_nullable
@@ -304,16 +300,16 @@ class __$$PixelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PixelImpl implements _Pixel {
-  const _$PixelImpl(
+class _$_Pixel implements _Pixel {
+  const _$_Pixel(
       {required this.red,
       required this.green,
       required this.blue,
       required this.alpha,
       required this.placedBy});
 
-  factory _$PixelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PixelImplFromJson(json);
+  factory _$_Pixel.fromJson(Map<String, dynamic> json) =>
+      _$$_PixelFromJson(json);
 
   @override
   final int red;
@@ -335,7 +331,7 @@ class _$PixelImpl implements _Pixel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PixelImpl &&
+            other is _$_Pixel &&
             (identical(other.red, red) || other.red == red) &&
             (identical(other.green, green) || other.green == green) &&
             (identical(other.blue, blue) || other.blue == blue) &&
@@ -352,12 +348,12 @@ class _$PixelImpl implements _Pixel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PixelImplCopyWith<_$PixelImpl> get copyWith =>
-      __$$PixelImplCopyWithImpl<_$PixelImpl>(this, _$identity);
+  _$$_PixelCopyWith<_$_Pixel> get copyWith =>
+      __$$_PixelCopyWithImpl<_$_Pixel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PixelImplToJson(
+    return _$$_PixelToJson(
       this,
     );
   }
@@ -369,9 +365,9 @@ abstract class _Pixel implements Pixel {
       required final int green,
       required final int blue,
       required final int alpha,
-      required final Participant placedBy}) = _$PixelImpl;
+      required final Participant placedBy}) = _$_Pixel;
 
-  factory _Pixel.fromJson(Map<String, dynamic> json) = _$PixelImpl.fromJson;
+  factory _Pixel.fromJson(Map<String, dynamic> json) = _$_Pixel.fromJson;
 
   @override
   int get red;
@@ -385,7 +381,7 @@ abstract class _Pixel implements Pixel {
   Participant get placedBy;
   @override
   @JsonKey(ignore: true)
-  _$$PixelImplCopyWith<_$PixelImpl> get copyWith =>
+  _$$_PixelCopyWith<_$_Pixel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -479,11 +475,10 @@ class _$PixelArtCopyWithImpl<$Res, $Val extends PixelArt>
 }
 
 /// @nodoc
-abstract class _$$PixelArtImplCopyWith<$Res>
-    implements $PixelArtCopyWith<$Res> {
-  factory _$$PixelArtImplCopyWith(
-          _$PixelArtImpl value, $Res Function(_$PixelArtImpl) then) =
-      __$$PixelArtImplCopyWithImpl<$Res>;
+abstract class _$$_PixelArtCopyWith<$Res> implements $PixelArtCopyWith<$Res> {
+  factory _$$_PixelArtCopyWith(
+          _$_PixelArt value, $Res Function(_$_PixelArt) then) =
+      __$$_PixelArtCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -497,11 +492,11 @@ abstract class _$$PixelArtImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PixelArtImplCopyWithImpl<$Res>
-    extends _$PixelArtCopyWithImpl<$Res, _$PixelArtImpl>
-    implements _$$PixelArtImplCopyWith<$Res> {
-  __$$PixelArtImplCopyWithImpl(
-      _$PixelArtImpl _value, $Res Function(_$PixelArtImpl) _then)
+class __$$_PixelArtCopyWithImpl<$Res>
+    extends _$PixelArtCopyWithImpl<$Res, _$_PixelArt>
+    implements _$$_PixelArtCopyWith<$Res> {
+  __$$_PixelArtCopyWithImpl(
+      _$_PixelArt _value, $Res Function(_$_PixelArt) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -515,7 +510,7 @@ class __$$PixelArtImplCopyWithImpl<$Res>
     Object? editors = null,
     Object? pixelMatrix = null,
   }) {
-    return _then(_$PixelArtImpl(
+    return _then(_$_PixelArt(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -551,8 +546,8 @@ class __$$PixelArtImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$PixelArtImpl extends _PixelArt {
-  const _$PixelArtImpl(
+class _$_PixelArt extends _PixelArt {
+  const _$_PixelArt(
       {required this.id,
       required this.name,
       required this.description,
@@ -564,8 +559,8 @@ class _$PixelArtImpl extends _PixelArt {
         _pixelMatrix = pixelMatrix,
         super._();
 
-  factory _$PixelArtImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PixelArtImplFromJson(json);
+  factory _$_PixelArt.fromJson(Map<String, dynamic> json) =>
+      _$$_PixelArtFromJson(json);
 
   @override
   final String id;
@@ -602,7 +597,7 @@ class _$PixelArtImpl extends _PixelArt {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PixelArtImpl &&
+            other is _$_PixelArt &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
@@ -629,12 +624,12 @@ class _$PixelArtImpl extends _PixelArt {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PixelArtImplCopyWith<_$PixelArtImpl> get copyWith =>
-      __$$PixelArtImplCopyWithImpl<_$PixelArtImpl>(this, _$identity);
+  _$$_PixelArtCopyWith<_$_PixelArt> get copyWith =>
+      __$$_PixelArtCopyWithImpl<_$_PixelArt>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PixelArtImplToJson(
+    return _$$_PixelArtToJson(
       this,
     );
   }
@@ -648,11 +643,10 @@ abstract class _PixelArt extends PixelArt {
       required final int width,
       required final int height,
       required final List<Participant> editors,
-      required final List<List<Pixel>> pixelMatrix}) = _$PixelArtImpl;
+      required final List<List<Pixel>> pixelMatrix}) = _$_PixelArt;
   const _PixelArt._() : super._();
 
-  factory _PixelArt.fromJson(Map<String, dynamic> json) =
-      _$PixelArtImpl.fromJson;
+  factory _PixelArt.fromJson(Map<String, dynamic> json) = _$_PixelArt.fromJson;
 
   @override
   String get id;
@@ -670,6 +664,6 @@ abstract class _PixelArt extends PixelArt {
   List<List<Pixel>> get pixelMatrix;
   @override
   @JsonKey(ignore: true)
-  _$$PixelArtImplCopyWith<_$PixelArtImpl> get copyWith =>
+  _$$_PixelArtCopyWith<_$_PixelArt> get copyWith =>
       throw _privateConstructorUsedError;
 }

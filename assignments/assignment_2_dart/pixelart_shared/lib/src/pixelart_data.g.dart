@@ -6,19 +6,19 @@ part of 'pixelart_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ParticipantImpl _$$ParticipantImplFromJson(Map<String, dynamic> json) =>
-    _$ParticipantImpl(
+_$_Participant _$$_ParticipantFromJson(Map<String, dynamic> json) =>
+    _$_Participant(
       id: json['id'] as String,
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$ParticipantImplToJson(_$ParticipantImpl instance) =>
+Map<String, dynamic> _$$_ParticipantToJson(_$_Participant instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
     };
 
-_$PixelImpl _$$PixelImplFromJson(Map<String, dynamic> json) => _$PixelImpl(
+_$_Pixel _$$_PixelFromJson(Map<String, dynamic> json) => _$_Pixel(
       red: json['red'] as int,
       green: json['green'] as int,
       blue: json['blue'] as int,
@@ -26,8 +26,7 @@ _$PixelImpl _$$PixelImplFromJson(Map<String, dynamic> json) => _$PixelImpl(
       placedBy: Participant.fromJson(json['placedBy'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$PixelImplToJson(_$PixelImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_PixelToJson(_$_Pixel instance) => <String, dynamic>{
       'red': instance.red,
       'green': instance.green,
       'blue': instance.blue,
@@ -35,8 +34,7 @@ Map<String, dynamic> _$$PixelImplToJson(_$PixelImpl instance) =>
       'placedBy': instance.placedBy,
     };
 
-_$PixelArtImpl _$$PixelArtImplFromJson(Map<String, dynamic> json) =>
-    _$PixelArtImpl(
+_$_PixelArt _$$_PixelArtFromJson(Map<String, dynamic> json) => _$_PixelArt(
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -52,7 +50,7 @@ _$PixelArtImpl _$$PixelArtImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$PixelArtImplToJson(_$PixelArtImpl instance) =>
+Map<String, dynamic> _$$_PixelArtToJson(_$_PixelArt instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
