@@ -5,8 +5,8 @@ typedef ParticipantScore = int;
 
 @immutable
 class Clique {
-  final String id;
-  final String name;
+  final String id; // TODO: generate with uuid?
+  final String name; // creator selects name of clique
 
   final Map<UserId, ParticipantScore> participantScoreMap;
 

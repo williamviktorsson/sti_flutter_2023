@@ -24,8 +24,7 @@ void main() async {
       apiKey, await HiveStore.create(path: Directory.current.path));
   Firestore.initialize(projectId);
   try {
-    await FirebaseAuth.instance.signUp("tester@lester.com", "test123");
-    await FirebaseAuth.instance.signIn("tester@lester.com", "test123");
+    await FirebaseAuth.instance.signUp("tester@lester.com", "test123"); // successful signup = logged in
   } catch (e) {
     print(e);
   }

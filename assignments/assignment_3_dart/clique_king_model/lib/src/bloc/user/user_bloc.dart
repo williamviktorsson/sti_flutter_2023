@@ -29,6 +29,8 @@ final class UserLogout extends UserEvent {}
 
 final class UserDelete extends UserEvent {}
 
+// ---
+
 @immutable
 sealed class UserState extends Equatable {}
 
@@ -54,6 +56,8 @@ final class UserLoginFailure extends UserState {
   @override
   List<Object?> get props => [];
 }
+
+// TODO: Registration states?
 
 final class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository _userRepo; // passed in so it can be easily mocked

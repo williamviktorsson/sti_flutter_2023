@@ -7,6 +7,9 @@ import 'package:meta/meta.dart';
 @immutable
 sealed class CliquesEvent {}
 
+// TODO: add CliquesLoadEvent or Reload
+// TODO: add newCliqueEvent
+
 @immutable
 sealed class CliquesState {}
 

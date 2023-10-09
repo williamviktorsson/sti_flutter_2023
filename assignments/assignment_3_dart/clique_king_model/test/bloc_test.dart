@@ -49,8 +49,9 @@ void main() async {
       build: () => UserBloc(
           authenticationRepository: authenticationRepository,
           userRepository: userRepository),
-      act: (bloc) => bloc.add(UserStarted()),
-      expect: () => [UserLoginInProgress()],
+      act: (bloc) => bloc.add(UserStarted()), // UserStarted is a Naming Convention
+      expect: () => [UserLoginInProgress()], // why userstarted -> userlogin?
+      // try login using local token if exists?
     );
   });
 }
