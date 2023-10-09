@@ -1,7 +1,5 @@
 # Se bifogad [mailkorrespondens](clique_king_mail.md) som instruktion för vad du förväntas göra.
 
-Du bör absolut se Arkitekt Perras genomgång vid föreläsningen 9/10/2023.
-
 ---
 
 Koden ska stödja:
