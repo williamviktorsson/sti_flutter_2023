@@ -37,6 +37,10 @@ eller
 
 - Stöd för att t.ex. annotera en pixel art som "favorite" så att det blir lättare att "browse favorites"
 
+eller 
+
+* Implementera BLoC för hanteringen av state i applikationen.
+
 eller
 
 * Applikationen har en mer än godkänd användarupplevelse med intuitiv navigering, harmoniska färgval, omsorgsfullt valda typsnitt och komponenter, osv.
