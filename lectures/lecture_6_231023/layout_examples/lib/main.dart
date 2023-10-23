@@ -97,18 +97,20 @@ class ContainerExample extends StatelessWidget {
       // show padding
       // perhaps show gradient (lineargradient)
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          border: Border.all(color: Colors.black, width: 4),
-          color: Colors.red,
-          gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: <Color>[Colors.red, Colors.amber])),
-      margin: const EdgeInsets.all(20),
+        border: Border.all(
+          color: Colors.blueAccent,
+          width: 5,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ),
+
+      margin: const EdgeInsets.all(60),
       padding: const EdgeInsets.all(20),
-      //   color: Colors.red, // remove when adding decoration
-      alignment: Alignment.bottomLeft, // change this around
-      child: const Text('Container'),
+
+      child: Container(
+          color: Colors.red, child: const Center(child: Text('Container'))),
     );
   }
 }
@@ -125,39 +127,52 @@ class ColumnRowExpandedExample extends StatelessWidget {
     // show replacing row with column
     // show adding row to column
     // show expanded flex properties
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Expanded(
+    return const Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Expanded(
+            flex: 2,
+            child: Card(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text("test"),
+              ),
+            ),
+          ),
+          Expanded(
             flex: 1,
-            child: Container(
-                color: Colors.blue,
-                child: const Center(child: Text('Column/Row/Expanded')))),
-        Expanded(
-          flex: 2,
-          child: Container(
-            color: Colors.green,
-            child: Row(children: [
-              ElevatedButton(child: const Text("press me? "), onPressed: () {}),
-              ElevatedButton(child: const Text("press me? "), onPressed: () {}),
-              ElevatedButton(child: const Text("press me? "), onPressed: () {})
-            ]),
+            child: Card(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text("test"),
+              ),
+            ),
           ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Container(
-            color: Colors.red,
-            child: Row(children: [
-              ElevatedButton(child: const Text("press me? "), onPressed: () {}),
-              ElevatedButton(child: const Text("press me? "), onPressed: () {}),
-              ElevatedButton(child: const Text("press me? "), onPressed: () {})
-            ]),
+          Card(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("test"),
+            ),
           ),
-        )
-      ],
-    );
+          Card(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("test"),
+            ),
+          ),
+          Card(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("test"),
+            ),
+          ),
+          Card(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("test"),
+            ),
+          ),
+        ]);
   }
 }
 
@@ -170,20 +185,26 @@ class StackPositionedExample extends StatelessWidget {
   Widget build(BuildContext context) {
     // show stack and positioned stuff
     // first item in array is bottom of stack
-    return Stack(
-      children: [
-        Positioned.fill(
-            child: Container(
-          color: Colors.blue,
-          child: Center(
-              child: Container(
-                  padding: const EdgeInsets.all(20),
-                  color: Colors.amber,
-                  child: const Text('Stack'))),
-        )),
-        const Positioned(left: 50, top: 50, child: Text('Stuff?')),
-      ],
-    );
+    return Stack(children: [
+      Positioned.fill(
+        child: Center(
+          child: Container(
+            color: Colors.red,
+            width: 100,
+            height: 100,
+          ),
+        ),
+      ),
+      Positioned.fill(
+        child: Center(
+          child: Container(
+            color: Colors.yellow,
+            width: 50,
+            height: 50,
+          ),
+        ),
+      ),
+    ]);
   }
 }
 
@@ -194,95 +215,19 @@ class WrapExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // show wrap with spacing and run spacing
     //    spacing is gap between adjacent chips
     //    runSpacing is gap between lines of chips
-    return Container(
-      color: Colors.blue,
-      alignment: Alignment.center,
-      child: Wrap(
-        spacing: 8.0, // gap between adjacent chips
-        runSpacing: 4.0, // gap between lines of chips
-        children: <Widget>[
-          Chip(
-            avatar: CircleAvatar(
-              backgroundColor: Colors.blue.shade900,
-              child: const Text('AH'),
-            ),
-            label: const Text('Hamilton'),
-          ),
-          Chip(
-            avatar: CircleAvatar(
-              backgroundColor: Colors.blue.shade900,
-              child: const Text('ML'),
-            ),
-            label: const Text('Lafayette'),
-          ),
-          Chip(
-            avatar: CircleAvatar(
-              backgroundColor: Colors.blue.shade900,
-              child: const Text('HM'),
-            ),
-            label: const Text('Mulligan'),
-          ),
-          Chip(
-            avatar: CircleAvatar(
-              backgroundColor: Colors.blue.shade900,
-              child: const Text('JL'),
-            ),
-            label: const Text('Laurens'),
-          ),          Chip(
-            avatar: CircleAvatar(
-              backgroundColor: Colors.blue.shade900,
-              child: const Text('JL'),
-            ),
-            label: const Text('Laurens'),
-          ),          Chip(
-            avatar: CircleAvatar(
-              backgroundColor: Colors.blue.shade900,
-              child: const Text('JL'),
-            ),
-            label: const Text('Laurens'),
-          ),          Chip(
-            avatar: CircleAvatar(
-              backgroundColor: Colors.blue.shade900,
-              child: const Text('JL'),
-            ),
-            label: const Text('Laurens'),
-          ),          Chip(
-            avatar: CircleAvatar(
-              backgroundColor: Colors.blue.shade900,
-              child: const Text('JL'),
-            ),
-            label: const Text('Laurens'),
-          ),          Chip(
-            avatar: CircleAvatar(
-              backgroundColor: Colors.blue.shade900,
-              child: const Text('JL'),
-            ),
-            label: const Text('Laurens'),
-          ),          Chip(
-            avatar: CircleAvatar(
-              backgroundColor: Colors.blue.shade900,
-              child: const Text('JL'),
-            ),
-            label: const Text('Laurens'),
-          ),          Chip(
-            avatar: CircleAvatar(
-              backgroundColor: Colors.blue.shade900,
-              child: const Text('JL'),
-            ),
-            label: const Text('Laurens'),
-          ),          Chip(
-            avatar: CircleAvatar(
-              backgroundColor: Colors.blue.shade900,
-              child: const Text('JL'),
-            ),
-            label: const Text('Laurens'),
-          ),
-        ],
-      ),
+    return Wrap(
+      spacing: 40.0, // gap between adjacent chips
+      runSpacing: 40.0,
+      children: List.generate(
+          50,
+          (index) => const Card(
+                  child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text("test"),
+              ))),
     );
   }
 }
@@ -297,42 +242,13 @@ class ListViewExample extends StatelessWidget {
     // show listview
     // show listTiles as children
     // show leading/title/subtitle/trailing
-    return Container(
-      color: Colors.pinkAccent.shade100,
-      alignment: Alignment.center,
-      child: ListView(
-        children: <Widget>[
-          ListTile(
-            leading: Icon(Icons.map),
-            title: Text('Map'),
-          ),
-          ListTile(
-            leading: Icon(Icons.photo_album),
-            title: Text('Album'),
-          ),
-          ListTile(
-            leading: Icon(Icons.phone),
-            title: Text('Phone'),
-          ),
-          ListTile(
-            leading: Icon(Icons.contacts),
-            title: Text('Contacts'),
-          ),
-          ListTile(
-            leading: Icon(Icons.email),
-            title: Text('Email'),
-          ),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
-          ),
-          ListTile(
-            leading: Icon(Icons.help),
-            title: Text('Help'),
-          ),
-        ],
-      ),
-    );
+    return ListView.builder(itemBuilder: (context, index) {
+      return Card(
+          child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text("test"),
+      ));
+    });
   }
 }
 
@@ -343,10 +259,18 @@ class GridViewExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.purple,
-      alignment: Alignment.center,
-      child: const Text('GridView'),
+    // show gridview.count
+    // vary crossAxisCount
+    // show children as chips or something
+    return GridView.count(
+      crossAxisCount: 4,
+      children: List.generate(
+          100,
+          (index) => Card(
+                  child: Padding(
+                padding: EdgeInsets.all(2.0),
+                child: Text('${index}'),
+              ))),
     );
   }
 }

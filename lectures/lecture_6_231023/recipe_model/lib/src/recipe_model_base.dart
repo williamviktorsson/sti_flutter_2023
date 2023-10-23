@@ -165,7 +165,7 @@ class IngredientRepository extends HiveRepository<Ingredient> {
   static final IngredientRepository _instance = IngredientRepository._();
 
   // Public getter to access the singleton instance
-  static get instance {
+  static IngredientRepository get instance {
     return _instance;
   }
 
@@ -189,7 +189,7 @@ class RecipeRepository extends HiveRepository<Recipe> {
   static final RecipeRepository _instance = RecipeRepository._();
 
   // Public getter to access the singleton instance
-  static get instance {
+  static RecipeRepository get instance {
     return _instance;
   }
 

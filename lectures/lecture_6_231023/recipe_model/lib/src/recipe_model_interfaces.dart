@@ -63,13 +63,3 @@ abstract interface class IRepository<T extends Identifiable> {
   Future<ActionResult<void>> clear();
 }
 
-abstract interface class IRecipeBuilder {
-  IRecipe? get recipe;
-  Future<ActionResult<IRecipe>> newRecipe();
-  Future<ActionResult<IRecipe>> editRecipe({required IRecipe recipe});
-  Future<ActionResult<IRecipe>> addStep({required IRecipeStep step});
-  Future<ActionResult<IRecipe>> addInstruction(
-      {required String instruction});
-  Future<ActionResult<IRecipe>> finishEditing();
-}
-
