@@ -122,7 +122,7 @@ class _IngredientsViewState extends State<IngredientsView> {
                                         });
                                         Navigator.of(context).pop();
                                         ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
+                                            .showSnackBar(const SnackBar(
                                                 backgroundColor: Colors.green,
                                                 content: Text(
                                                     "Successfully added ingredient")));
