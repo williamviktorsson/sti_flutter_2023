@@ -87,6 +87,7 @@ abstract class HiveRepository<T extends Identifiable>
         return ActionResult.failure(ActionStatus.ValidationFailed);
       }
       await box.put(item.id, serialize(item));
+
       return ActionResult.success(item);
     } catch (e) {
       return ActionResult.failure(ActionStatus.DatabaseError, e);

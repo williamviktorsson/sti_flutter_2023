@@ -1,0 +1,1 @@
+# Se kod i lecture_6 fortsatt i recipe_app_fresh

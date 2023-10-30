@@ -34,53 +34,53 @@ class _IngredientsViewState extends State<IngredientsView> {
                   itemBuilder: (context, index) {
                     final ingredient = ingredients[index];
                     return ListTile(
-                        onTap: () {
-                          // todo: navigate to ingredient detail view
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => IngredientDetailedView(
-                                    ingredient: ingredient,
-                                  )));
+                      onTap: () {
+                        // todo: navigate to ingredient detail view
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => IngredientDetailedView(
+                                  ingredient: ingredient,
+                                )));
+                      },
+                      title: Text(ingredient.name),
+                      subtitle: Text(ingredient.description),
+                      trailing: IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () {
+                          // todo: open popup dialog, delete on confirm
+                          showDialog<void>(
+                            context: context,
+                            barrierDismissible: false, // user must tap button!
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('Deletion dialog'),
+                                content: Text("confirm ingredient delete"),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: const Text('cancel'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: const Text('delete'),
+                                    onPressed: () {
+                                      IngredientRepository.instance
+                                          .delete(ingredient.id);
+                                      setState(() {
+                                        ingredientsFuture = IngredientRepository
+                                            .instance
+                                            .list();
+                                      });
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                         },
-                        title: Text(ingredient.name),
-                        subtitle: Text(ingredient.description),
-                        trailing: IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () {
-                            // todo: open popup dialog, delete on confirm
-                            showDialog<void>(
-                              context: context,
-                              barrierDismissible:
-                                  false, // user must tap button!
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text('Deletion dialog'),
-                                  content: Text("confirm ingredient delete"),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      child: const Text('cancel'),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                    TextButton(
-                                      child: const Text('delete'),
-                                      onPressed: () {
-                                        IngredientRepository.instance
-                                            .delete(ingredient.id);
-                                        setState(() {
-                                          ingredientsFuture =
-                                              IngredientRepository.instance
-                                                  .list();
-                                        });
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                        ));
+                      ),
+                    );
                   },
                   itemCount: ingredients.length),
               floatingActionButton: FloatingActionButton.extended(
@@ -158,9 +158,20 @@ class IngredientDetailedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(ingredient.name)),
-      body: Center(
-        child: Text(ingredient.description),
+      appBar: AppBar(
+        title: Text(ingredient.name),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
+      body: Container(
+        color: Colors.greenAccent,
+        child: Center(
+          child: Text(ingredient.description),
+        ),
       ),
     );
   }

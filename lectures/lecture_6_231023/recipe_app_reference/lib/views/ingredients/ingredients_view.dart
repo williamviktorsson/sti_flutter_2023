@@ -9,6 +9,7 @@ class IngredientsView extends StatefulWidget {
   State<IngredientsView> createState() => _IngredientsViewState();
 }
 
+
 class _IngredientsViewState extends State<IngredientsView> {
   var ingredientsFuture = IngredientRepository.instance.list();
 
