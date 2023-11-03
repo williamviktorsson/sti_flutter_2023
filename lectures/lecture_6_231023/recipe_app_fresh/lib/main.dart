@@ -103,8 +103,10 @@ void main() async {
             theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
             darkTheme:
                 ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-            home: ChangeNotifierProvider<ValueNotifier<Locale>>.value( // provide selectedLocale to the app
-                value: selectedLocale, child: const RecipesApp()),
+            home: ChangeNotifierProvider<ValueNotifier<Locale>>.value(
+                // provide selectedLocale to the app
+                value: selectedLocale,
+                child: const RecipesApp()),
             locale: locale,
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
@@ -137,14 +139,13 @@ class _RecipesAppState extends State<RecipesApp>
     const LocalizationView()
   ];
 
-  // TODO: Add a bottom navigation bar with two items: Ingredients and Recipes
-  // Create NavigationDestinations with proper icons and labels
-  // Create a list of NavigationDestinations
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: views[currentPageIndex],
+        body: IndexedStack(
+          index: currentPageIndex,
+          children: views,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(
