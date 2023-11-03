@@ -7,12 +7,13 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'package:http/http.dart' as http;
 
-class HTTPBoardRepository extends AbstractBoardRepository {
+class HTTPBoardRepository implements AbstractBoardRepository {
+
   final String url;
   final String _HTTPurl;
   final String _WSurl;
 
-  const HTTPBoardRepository({required this.url})
+  HTTPBoardRepository({required this.url})
       : _HTTPurl = "http://" + url,
         _WSurl = "ws://" + url;
 

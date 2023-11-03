@@ -2,8 +2,8 @@
 import 'game_crud_utils.dart';
 import 'game_data.dart';
 
-abstract class AbstractBoardRepository {
-  const AbstractBoardRepository();
+// 
+abstract interface class AbstractBoardRepository {
 
   Future<CRUDResult<Board>> create(Board item);
   Future<CRUDResult<Board>> read(String id);

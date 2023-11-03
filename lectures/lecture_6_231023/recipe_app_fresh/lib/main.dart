@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:recipe_model/recipe_model.dart';
 import 'views/ingredients/ingredients_view.dart';
 import 'views/recipes/recipes_view.dart';
@@ -86,14 +89,34 @@ void main() async {
 
   await ingredientRepository.initialize(filePath: directory.path);
   await recipeRepository.initialize(filePath: directory.path);
+  await initializeDateFormatting(); // initialize this thing for date formatting
+
+  ValueNotifier<Locale> selectedLocale =
+      ValueNotifier(const Locale("sv", "SE"));
 
   runApp(
-    MaterialApp(
-      title: 'Recipes App',
-      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-      home: const RecipesApp(),
-    ),
+    ValueListenableBuilder(
+        valueListenable: selectedLocale, // rebuild app on selectedLocale change
+        builder: (context, locale, _) {
+          return MaterialApp(
+            title: 'Recipes App',
+            theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+            darkTheme:
+                ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+            home: ChangeNotifierProvider<ValueNotifier<Locale>>.value( // provide selectedLocale to the app
+                value: selectedLocale, child: const RecipesApp()),
+            locale: locale,
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale("sv", "SE"),
+              Locale("en", "US"),
+            ],
+          );
+        }),
   );
 }
 
@@ -104,10 +127,15 @@ class RecipesApp extends StatefulWidget {
   State<RecipesApp> createState() => _RecipesAppState();
 }
 
-class _RecipesAppState extends State<RecipesApp> {
+class _RecipesAppState extends State<RecipesApp>
+    with AutomaticKeepAliveClientMixin {
   int currentPageIndex = 0;
 
-  final List<Widget> views = const [IngredientsView(), RecipesView()];
+  final List<Widget> views = [
+    const IngredientsView(),
+    const RecipesView(),
+    const LocalizationView()
+  ];
 
   // TODO: Add a bottom navigation bar with two items: Ingredients and Recipes
   // Create NavigationDestinations with proper icons and labels
@@ -118,7 +146,7 @@ class _RecipesAppState extends State<RecipesApp> {
     return Scaffold(
         body: views[currentPageIndex],
         bottomNavigationBar: BottomNavigationBar(
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.food_bank),
               label: "Ingredients",
@@ -126,6 +154,10 @@ class _RecipesAppState extends State<RecipesApp> {
             BottomNavigationBarItem(
               icon: Icon(Icons.food_bank_outlined),
               label: "Recipes",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.language),
+              label: "Locale",
             ),
           ],
           currentIndex: currentPageIndex,
@@ -135,5 +167,49 @@ class _RecipesAppState extends State<RecipesApp> {
             });
           },
         ));
+  }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
+}
+
+class LocalizationView extends StatelessWidget {
+  const LocalizationView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    ValueNotifier<Locale> selectedLocale =
+        context.watch<ValueNotifier<Locale>>();
+    return Scaffold(
+      body: Center(
+          child: Column(
+        children: [
+          Text(selectedLocale.value.languageCode),
+          TextButton(
+            child: Text("show date picker"),
+            onPressed: () {
+              showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now().subtract(Duration(days: 365)),
+                  lastDate: DateTime.now().add(Duration(days: 365)));
+            },
+          )
+        ],
+      )),
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text("${selectedLocale.value.countryCode}"),
+        onPressed: () {
+          if (selectedLocale.value.countryCode == "SE") {
+            selectedLocale.value = const Locale("en", "US");
+          } else {
+            selectedLocale.value = const Locale("sv", "SE");
+          }
+        },
+      ),
+    );
   }
 }

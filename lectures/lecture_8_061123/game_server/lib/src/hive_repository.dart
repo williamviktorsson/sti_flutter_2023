@@ -1,10 +1,10 @@
 // ignore_for_file: public_member_api_docs
 
 import 'dart:io';
-import 'package:hive/hive.dart';
 import 'package:game_shared/game_shared.dart';
+import 'package:hive/hive.dart';
 
-class HiveBoardRepository extends AbstractBoardRepository {
+class HiveBoardRepository implements AbstractBoardRepository {
   late String collectionName;
   late Box<String> box;
 
