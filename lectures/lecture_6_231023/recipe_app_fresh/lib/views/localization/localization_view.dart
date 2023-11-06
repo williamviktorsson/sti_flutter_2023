@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:recipe_app/views/provider_example/provider_example.dart';
 
 class LocalizationView extends StatelessWidget {
   const LocalizationView({
@@ -8,35 +10,46 @@ class LocalizationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<Locale> selectedLocale =
-        context.watch<ValueNotifier<Locale>>();
+    Locale selectedLocale = Localizations.localeOf(context);
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(selectedLocale.value.languageCode),
-          TextButton(
-            child: Text("show date picker"),
-            onPressed: () {
-              showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime.now().subtract(Duration(days: 365)),
-                  lastDate: DateTime.now().add(Duration(days: 365)));
-            },
-          )
-        ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        label: Text("${selectedLocale.value.countryCode}"),
-        onPressed: () {
-          if (selectedLocale.value.countryCode == "SE") {
-            selectedLocale.value = const Locale("en", "US");
-          } else {
-            selectedLocale.value = const Locale("sv", "SE");
-          }
-        },
-      ),
-    );
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(selectedLocale.languageCode),
+              TextButton(
+                child: const Text("show date picker"),
+                onPressed: () {
+                  showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate:
+                          DateTime.now().subtract(const Duration(days: 365)),
+                      lastDate: DateTime.now().add(const Duration(days: 365)));
+                },
+              ),
+              // dropdown applocalizations countrycodes
+
+              DropdownButton<String>(
+                  value: selectedLocale.languageCode,
+                  items: AppLocalizations.supportedLocales
+                      .map((e) => DropdownMenuItem(
+                          value: e.languageCode, child: Text(e.languageCode)))
+                      .toList(),
+                  onChanged: (country) {
+                    context.read<ValueNotifier<Locale>>().value =
+                        Locale(country!);
+                  })
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          heroTag: "providerExample",
+          label: const Text("Provider Example"),
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ProviderExample()));
+          },
+        ));
   }
 }

@@ -2,6 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/views/ingredients/create_ingredient_modal.dart';
 import 'package:recipe_model/recipe_model.dart';
 import 'package:uuid/uuid.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+class SpinningPageRoute extends MaterialPageRoute {
+  SpinningPageRoute({required WidgetBuilder builder})
+      : super(builder: builder, maintainState: true);
+
+  @override
+  Duration get transitionDuration => const Duration(milliseconds: 1500);
+
+  // lots of other things such as fading, sliding, etc.
+
+  @override
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+    return FadeTransition(
+      opacity: animation,
+      child: RotationTransition(
+        turns: Tween<double>(
+          begin: 0.0,
+          end: 4.0,
+        ).animate(CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOutQuart,
+        )),
+        child: child,
+      ),
+    );
+  }
+}
 
 class IngredientsView extends StatefulWidget {
   const IngredientsView({Key? key}) : super(key: key);
@@ -36,7 +65,7 @@ class _IngredientsViewState extends State<IngredientsView> {
                     return ListTile(
                       onTap: () {
                         // todo: navigate to ingredient detail view
-                        Navigator.of(context).push(MaterialPageRoute(
+                        Navigator.of(context).push(SpinningPageRoute(
                             builder: (context) => IngredientDetailedView(
                                   ingredient: ingredient,
                                 )));
@@ -63,8 +92,8 @@ class _IngredientsViewState extends State<IngredientsView> {
                                   ),
                                   TextButton(
                                     child: const Text('delete'),
-                                    onPressed: () {
-                                      IngredientRepository.instance
+                                    onPressed: () async {
+                                      await IngredientRepository.instance
                                           .delete(ingredient.id);
                                       setState(() {
                                         ingredientsFuture = IngredientRepository
@@ -84,13 +113,17 @@ class _IngredientsViewState extends State<IngredientsView> {
                   },
                   itemCount: ingredients.length),
               floatingActionButton: FloatingActionButton.extended(
+                  heroTag: "addIngredient",
                   onPressed: () {
-                    showModalBottomSheet<void>(
+                    showDialog<void>(
                       context: context,
                       builder: (BuildContext context) {
-                        return Container(
-                          height: MediaQuery.of(context).size.height * 0.5,
-                          color: Colors.amber,
+                        return Dialog(
+                          insetPadding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width / 10,
+                              vertical:
+                                  MediaQuery.of(context).size.height / 10),
                           child: Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -109,9 +142,9 @@ class _IngredientsViewState extends State<IngredientsView> {
                                     ),
                                     ElevatedButton(
                                       child: const Text('Add new'),
-                                      onPressed: () {
-                                        IngredientRepository.instance.create(
-                                            Ingredient(
+                                      onPressed: () async {
+                                        await IngredientRepository.instance
+                                            .create(Ingredient(
                                                 id: const Uuid().v4(),
                                                 name: "test",
                                                 description: "test"));
@@ -137,7 +170,7 @@ class _IngredientsViewState extends State<IngredientsView> {
                       },
                     );
                   },
-                  label: Text("Add Ingredient")),
+                  label: Text(AppLocalizations.of(context)!.add_recipe)),
             );
           } else if (snapshot.hasError) {
             return Center(child: Text("error"));
