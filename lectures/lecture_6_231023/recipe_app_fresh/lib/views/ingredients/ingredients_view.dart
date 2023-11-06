@@ -3,6 +3,30 @@ import 'package:recipe_app/views/ingredients/create_ingredient_modal.dart';
 import 'package:recipe_model/recipe_model.dart';
 import 'package:uuid/uuid.dart';
 
+class FadePageRoute extends MaterialPageRoute {
+  FadePageRoute({required super.builder});
+
+  @override
+  Duration get transitionDuration => const Duration(milliseconds: 1500);
+
+  @override
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+    return ScaleTransition(
+      scale: animation,
+      child: SlideTransition(
+        position: animation.drive(
+            Tween(begin: Offset(0, 1), end: Offset(0, 0)).chain(CurveTween(
+          curve: Curves.ease,
+        ))),
+        child: RotationTransition(
+            turns: animation,
+            child: FadeTransition(opacity: animation, child: child)),
+      ),
+    );
+  }
+}
+
 class IngredientsView extends StatefulWidget {
   const IngredientsView({Key? key}) : super(key: key);
 
@@ -31,12 +55,14 @@ class _IngredientsViewState extends State<IngredientsView> {
 
             return Scaffold(
               body: ListView.builder(
+                  
                   itemBuilder: (context, index) {
                     final ingredient = ingredients[index];
                     return ListTile(
+                      key: ValueKey(ingredient.id),
                       onTap: () {
                         // todo: navigate to ingredient detail view
-                        Navigator.of(context).push(MaterialPageRoute(
+                        Navigator.of(context).push(FadePageRoute(
                             builder: (context) => IngredientDetailedView(
                                   ingredient: ingredient,
                                 )));
@@ -63,13 +89,14 @@ class _IngredientsViewState extends State<IngredientsView> {
                                   ),
                                   TextButton(
                                     child: const Text('delete'),
-                                    onPressed: () {
-                                      IngredientRepository.instance
+                                    onPressed: () async {
+                                      await IngredientRepository.instance
                                           .delete(ingredient.id);
-                                      setState(() {
-                                        ingredientsFuture = IngredientRepository
-                                            .instance
-                                            .list();
+                                      ingredientsFuture = IngredientRepository
+                                          .instance
+                                          .list()
+                                          .whenComplete(() {
+                                        setState(() {});
                                       });
                                       Navigator.of(context).pop();
                                     },

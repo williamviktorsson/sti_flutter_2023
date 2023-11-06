@@ -1,10 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:recipe_model/recipe_model.dart';
+import 'l10n/l10n.dart';
 import 'views/ingredients/ingredients_view.dart';
 import 'views/recipes/recipes_view.dart';
-
-import 'package:flutter/material.dart';
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
@@ -82,19 +83,108 @@ void main() async {
   IngredientRepository ingredientRepository = IngredientRepository.instance;
   RecipeRepository recipeRepository = RecipeRepository.instance;
 
-  final directory = await getApplicationDocumentsDirectory();
+  if (!kIsWeb) {
+    final directory = await getApplicationDocumentsDirectory();
+    await ingredientRepository.initialize(filePath: directory.path);
+    await recipeRepository.initialize(filePath: directory.path);
+  } else {
+    await ingredientRepository.initializeWeb();
+    await recipeRepository.initializeWeb();
+  }
 
-  await ingredientRepository.initialize(filePath: directory.path);
-  await recipeRepository.initialize(filePath: directory.path);
+  final localeNotifier = ValueNotifier<Locale>(Locale("sv"));
 
   runApp(
-    MaterialApp(
-      title: 'Recipes App',
-      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-      home: const RecipesApp(),
-    ),
+    ChangeNotifierProvider.value(
+        value: localeNotifier,
+        child: ChangeNotifierProvider(
+          create: (_) => ValueNotifier<int>(0),
+          child: Builder(builder: (context) {
+            final currentLocale = context.watch<ValueNotifier<Locale>>().value;
+            return MaterialApp(
+              title: 'Recipes App',
+              theme:
+                  ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+              home: const LayoutChooser(),
+              locale: currentLocale,
+              supportedLocales: AppLocalizations.supportedLocales,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+            );
+          }),
+        )),
   );
+}
+
+class LayoutChooser extends StatelessWidget {
+  const LayoutChooser({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MediaQuery.of(context).size.width > 600
+        ? const DesktopView()
+        : const RecipesApp();
+  }
+}
+
+class DesktopView extends StatefulWidget {
+  const DesktopView({super.key});
+
+  @override
+  State<DesktopView> createState() => _DesktopViewState();
+}
+
+class _DesktopViewState extends State<DesktopView> {
+  int currentPageIndex = 0;
+
+  final List<Widget> views = const [
+    IngredientsView(),
+    RecipesView(),
+    SettingsView()
+  ];
+
+  // TODO: Add a bottom navigation bar with two items: Ingredients and Recipes
+  // Create NavigationDestinations with proper icons and labels
+  // Create a list of NavigationDestinations
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // change to PageView to only load view when needed
+      // requires adding automatickeepalive on child views to not dispose when hidden
+      body: Row(
+        children: [
+          NavigationRail(
+              onDestinationSelected: (index) {
+                setState(() {
+                  currentPageIndex = index;
+                });
+              },
+              destinations: [
+                NavigationRailDestination(
+                  icon: Icon(Icons.food_bank),
+                  label: Text(AppLocalizations.of(context)!.ingredients),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.food_bank_outlined),
+                  label: Text(AppLocalizations.of(context)!.recipes),
+                ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.settings),
+                  label: Text(AppLocalizations.of(context)!.recipes),
+                ),
+              ],
+              selectedIndex: currentPageIndex),
+          const VerticalDivider(),
+          Expanded(
+            child: IndexedStack(
+              index: currentPageIndex,
+              children: views,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class RecipesApp extends StatefulWidget {
@@ -107,7 +197,11 @@ class RecipesApp extends StatefulWidget {
 class _RecipesAppState extends State<RecipesApp> {
   int currentPageIndex = 0;
 
-  final List<Widget> views = const [IngredientsView(), RecipesView()];
+  final List<Widget> views = const [
+    IngredientsView(),
+    RecipesView(),
+    SettingsView()
+  ];
 
   // TODO: Add a bottom navigation bar with two items: Ingredients and Recipes
   // Create NavigationDestinations with proper icons and labels
@@ -116,16 +210,25 @@ class _RecipesAppState extends State<RecipesApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: views[currentPageIndex],
+        // change to PageView to only load view when needed
+        // requires adding automatickeepalive on child views to not dispose when hidden
+        body: IndexedStack(
+          index: currentPageIndex,
+          children: views,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.food_bank),
-              label: "Ingredients",
+              label: AppLocalizations.of(context)!.ingredients,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.food_bank_outlined),
-              label: "Recipes",
+              label: AppLocalizations.of(context)!.recipes,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: AppLocalizations.of(context)!.recipes,
             ),
           ],
           currentIndex: currentPageIndex,
@@ -135,5 +238,25 @@ class _RecipesAppState extends State<RecipesApp> {
             });
           },
         ));
+  }
+}
+
+class SettingsView extends StatelessWidget {
+  const SettingsView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Locale selectedLocale = context.watch<ValueNotifier<Locale>>().value;
+    return Center(
+      child: DropdownButton<String>(
+          value: selectedLocale.languageCode,
+          items: AppLocalizations.supportedLocales
+              .map((e) => DropdownMenuItem(
+                  value: e.languageCode, child: Text(e.languageCode)))
+              .toList(),
+          onChanged: (country) {
+            context.read<ValueNotifier<Locale>>().value = Locale(country!);
+          }),
+    );
   }
 }

@@ -42,7 +42,7 @@ void main() async {
           userRepository: userRepository),
       expect: () => [],
       verify: (bloc) => bloc.state is UserInitial,
-      wait: Duration(seconds: 1),
+      wait: Duration(seconds: 1), // wait is required when test should wait for async operations
     );
 
     blocTest(
@@ -54,7 +54,7 @@ void main() async {
           bloc.add(UserStarted()), // UserStarted is a Naming Convention
       expect: () => [UserLoginInProgress()], // why userstarted -> userlogin?
       // try login using local token if exists?
-      wait: Duration(seconds: 1),
+      wait: Duration(seconds: 1), // // wait is required when test should wait for async operations 
     );
   });
 }

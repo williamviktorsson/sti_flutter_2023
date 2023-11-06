@@ -1,0 +1,4 @@
+#Fri Nov 03 08:54:04 CET 2023
+base.0=C\:\\Users\\willi\\work\\BiTi\\sti_flutter_2023\\lectures\\lecture_8_061123\\board_game\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

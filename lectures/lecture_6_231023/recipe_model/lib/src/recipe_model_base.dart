@@ -68,6 +68,10 @@ abstract class HiveRepository<T extends Identifiable>
     box = await Hive.openBox<String>(_collectionName);
   }
 
+  Future<void> initializeWeb() async {
+    box = await Hive.openBox<String>(_collectionName);
+  }
+
   Future<ActionResult<void>> destroy() async {
     try {
       await box.clear();

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:recipe_app/views/recipes/edit_recipe_modal.dart';
 import 'package:recipe_model/recipe_model.dart';
 import 'package:uuid/uuid.dart';
@@ -17,12 +18,8 @@ class SlowPageRoute extends MaterialPageRoute {
   @override
   Duration get transitionDuration => const Duration(milliseconds: 750);
 
-  
-
   // lots of other things such as fading, sliding, etc.
-
 }
-
 
 class _RecipesViewState extends State<RecipesView> {
   // stateful widget as we will want to update the recipes list when actions are performed
@@ -37,99 +34,111 @@ class _RecipesViewState extends State<RecipesView> {
     // add a fab which creates recipes and updates the list
     // fab can use a modal bottom sheet to show create recipe modal
 
-    return FutureBuilder(
-        future: recipesFuture,
-        builder: (context, snapshot) {
-          if (snapshot.data != null) {
-            final recipes = snapshot.data!.value!;
+    return HeroControllerScope(
+      controller: MaterialApp.createMaterialHeroController(),
+      child: Navigator(
+        onGenerateRoute: (_) => MaterialPageRoute(builder: (context) {
+          return FutureBuilder(
+              future: recipesFuture,
+              builder: (context, snapshot) {
+                if (snapshot.data != null) {
+                  final recipes = snapshot.data!.value!;
 
-            return Scaffold(
-              body: ListView.builder(
-                  itemBuilder: (context, index) {
-                    final recipe = recipes[index];
-                    return Hero(
-                      tag: recipe.id,
-                      child: Material( // to make hero work properly
-                        child: ListTile(
-                          onTap: () {
-                            // todo: navigate to recipe detail view
-                            Navigator.of(context).push(SlowPageRoute(
-                                builder: (context) => RecipeDetailedView(
-                                      recipe: recipe,
-                                    )));
-                          },
-                          title: Text(recipe.name),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () {
-                              // todo: open popup dialog, delete on confirm
-                              showDialog<void>(
-                                context: context,
-                                barrierDismissible: false, // user must tap button!
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: const Text('Deletion dialog'),
-                                    content: Text("confirm recipe delete"),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        child: const Text('cancel'),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                      TextButton(
-                                        child: const Text('delete'),
-                                        onPressed: () {
-                                          RecipeRepository.instance
-                                              .delete(recipe.id);
-                                          setState(() {
-                                            recipesFuture =
-                                                RecipeRepository.instance.list();
-                                          });
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                    ],
-                                  );
+                  return Scaffold(
+                    body: ListView.builder(
+                        itemBuilder: (context, index) {
+                          final recipe = recipes[index];
+                          return Hero(
+                            tag: recipe.id,
+                            child: Material(
+                              // to make hero work properly
+                              child: ListTile(
+                                onTap: () {
+                                  // todo: navigate to recipe detail view
+                                  Navigator.of(context).push(SlowPageRoute(
+                                      builder: (context) => RecipeDetailedView(
+                                            recipe: recipe,
+                                          )));
                                 },
-                              );
+                                title: Text(recipe.name),
+                                trailing: IconButton(
+                                  icon: const Icon(Icons.delete),
+                                  onPressed: () {
+                                    // todo: open popup dialog, delete on confirm
+                                    showDialog<void>(
+                                      context: context,
+                                      barrierDismissible:
+                                          false, // user must tap button!
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text('Deletion dialog'),
+                                          content:
+                                              Text("confirm recipe delete"),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              child: const Text('cancel'),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: const Text('delete'),
+                                              onPressed: () {
+                                                RecipeRepository.instance
+                                                    .delete(recipe.id);
+                                                setState(() {
+                                                  recipesFuture =
+                                                      RecipeRepository.instance
+                                                          .list();
+                                                });
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        itemCount: recipes.length),
+                    floatingActionButton: FloatingActionButton.extended(
+                        onPressed: () async {
+                          final recipeResult = await showDialog<Recipe>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return EditRecipeModal();
                             },
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                  itemCount: recipes.length),
-              floatingActionButton: FloatingActionButton.extended(
-                  onPressed: () async {
-                    final recipeResult = await showModalBottomSheet<Recipe>(
-                      isScrollControlled: true, // may be required to show full modal
-                      context: context,
-                      builder: (BuildContext context) {
-                        return EditRecipeModal();
-                      },
-                    );
+                          );
 
-                    // modal popped with new recipe
-                    if (recipeResult != null) {
-                      RecipeRepository.instance.create(recipeResult);
-                      setState(() {
-                        recipesFuture = RecipeRepository.instance.list();
-                      });
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          backgroundColor: Colors.green,
-                          content: Text("Successfully added recipe")));
-                    }
-                  },
-                  label: Text("Add Recipe")),
-            );
-          } else if (snapshot.hasError) {
-            return Center(child: Text("error"));
-          } else {
-            // allt under 50ms är ungefär omedelbart
-            return Center(child: CircularProgressIndicator());
-          }
-        });
+                          // modal popped with new recipe
+                          if (recipeResult != null) {
+                            RecipeRepository.instance.create(recipeResult);
+                            setState(() {
+                              recipesFuture = RecipeRepository.instance.list();
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    backgroundColor: Colors.green,
+                                    content:
+                                        Text("Successfully added recipe")));
+                          }
+                        },
+                        label: Text("Add Recipe")),
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(child: Text("error"));
+                } else {
+                  // allt under 50ms är ungefär omedelbart
+                  return Center(child: CircularProgressIndicator());
+                }
+              });
+        }),
+      ),
+    );
   }
 }
 
@@ -155,7 +164,17 @@ class RecipeDetailedView extends StatelessWidget {
         body: Container(
           color: Colors.greenAccent,
           child: Center(
-            child: Text("foobar"),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(context.watch<ValueNotifier<int>>().value.toString()),
+                TextButton(
+                    onPressed: () {
+                      context.read<ValueNotifier<int>>().value++;
+                    },
+                    child: Text("press me"))
+              ],
+            ),
           ),
         ),
       ),
