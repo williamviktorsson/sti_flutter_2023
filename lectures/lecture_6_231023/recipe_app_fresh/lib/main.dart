@@ -111,7 +111,6 @@ void main() async {
               theme:
                   //fromseed,
                   ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-                  
               darkTheme:
                   ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
               home: ChangeNotifierProvider<ValueNotifier<Locale>>.value(
@@ -229,33 +228,30 @@ class _RecipesAppDrawerState extends State<RecipesAppDrawer> {
     return Scaffold(
       body: Row(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: NavigationRail(
-              minWidth: 50,
-              destinations: [
-                NavigationRailDestination(
-                  icon: const Icon(Icons.food_bank),
-                  label: Text(AppLocalizations.of(context)!.ingredients),
-                ),
-                NavigationRailDestination(
-                  icon: const Icon(Icons.food_bank_outlined),
-                  label: Text(AppLocalizations.of(context)!.recipes),
-                ),
-                NavigationRailDestination(
-                  icon: const Icon(Icons.language),
-                  label: Text(AppLocalizations.of(context)!.localeName),
-                ),
-              ],
-              selectedIndex: currentPageIndex,
-              useIndicator: true,
-              onDestinationSelected: (int index) {
-                setState(() {
-                  currentPageIndex = index;
-                  _pageController.jumpToPage(currentPageIndex);
-                });
-              },
-            ),
+          NavigationRail(
+            minWidth: 50,
+            destinations: [
+              NavigationRailDestination(
+                icon: const Icon(Icons.food_bank),
+                label: Text(AppLocalizations.of(context)!.ingredients),
+              ),
+              NavigationRailDestination(
+                icon: const Icon(Icons.food_bank_outlined),
+                label: Text(AppLocalizations.of(context)!.recipes),
+              ),
+              NavigationRailDestination(
+                icon: const Icon(Icons.language),
+                label: Text(AppLocalizations.of(context)!.localeName),
+              ),
+            ],
+            selectedIndex: currentPageIndex,
+            useIndicator: true,
+            onDestinationSelected: (int index) {
+              setState(() {
+                currentPageIndex = index;
+                _pageController.jumpToPage(currentPageIndex);
+              });
+            },
           ),
           const VerticalDivider(thickness: 1, width: 1),
           Expanded(
