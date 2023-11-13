@@ -48,7 +48,6 @@ class _RecipesViewState extends State<RecipesView>
                   builder: (context, snapshot) {
                     if (snapshot.data != null) {
                       final recipes = snapshot.data!.value!;
-
                       return Scaffold(
                         body: ListView.builder(
                             itemBuilder: (context, index) {
@@ -91,7 +90,8 @@ class _RecipesViewState extends State<RecipesView>
                                                 TextButton(
                                                   child: const Text('delete'),
                                                   onPressed: () async {
-                                                    await RecipeRepository.instance
+                                                    await RecipeRepository
+                                                        .instance
                                                         .delete(recipe.id);
                                                     setState(() {
                                                       recipesFuture =
@@ -115,30 +115,31 @@ class _RecipesViewState extends State<RecipesView>
                             itemCount: recipes.length),
                         floatingActionButton: FloatingActionButton.extended(
                           heroTag: "addRecipe",
-                            onPressed: () async {
-                              final recipeResult = await showDialog<Recipe>(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return const EditRecipeModal();
-                                },
-                              );
+                          onPressed: () async {
+                            final recipeResult = await showDialog<Recipe>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return const EditRecipeModal();
+                              },
+                            );
 
-                              // modal popped with new recipe
-                              if (recipeResult != null) {
-                                await RecipeRepository.instance.create(recipeResult);
-                                setState(() {
-                                  recipesFuture =
-                                      RecipeRepository.instance.list();
-                                });
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        backgroundColor: Colors.green,
-                                        content:
-                                            Text("Successfully added recipe")));
-                              }
-                            },
-                            label:
-                                Text(AppLocalizations.of(context)!.add_recipe)),
+                            // modal popped with new recipe
+                            if (recipeResult != null) {
+                              await RecipeRepository.instance
+                                  .create(recipeResult);
+                              setState(() {
+                                recipesFuture =
+                                    RecipeRepository.instance.list();
+                              });
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      backgroundColor: Colors.green,
+                                      content:
+                                          Text("Successfully added recipe")));
+                            }
+                          },
+                          label: Text(AppLocalizations.of(context)!.add_recipe),
+                        ),
                       );
                     } else if (snapshot.hasError) {
                       return const Center(child: Text("error"));

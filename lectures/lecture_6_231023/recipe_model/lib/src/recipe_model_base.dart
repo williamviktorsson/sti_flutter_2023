@@ -112,7 +112,7 @@ abstract class HiveRepository<T extends Identifiable>
   }
 
   @override
-  Future<ActionResult<T>> read(String id) async {
+  FResult<T> read(String id) async {
     try {
       final item = box.get(id);
       if (item == null) {
@@ -125,7 +125,17 @@ abstract class HiveRepository<T extends Identifiable>
   }
 
   @override
-  Future<ActionResult<List<T>>> list() async {
+  FResult<List<T>> list() async {
+    try {
+      final items = box.values.map((item) => deserialize(item)).toList();
+      return ActionResult.success(items);
+    } catch (e) {
+      return ActionResult.failure(ActionStatus.DatabaseError, e);
+    }
+  }
+
+    @override
+  FResult<List<T>> list_two() async {
     try {
       final items = box.values.map((item) => deserialize(item)).toList();
       return ActionResult.success(items);

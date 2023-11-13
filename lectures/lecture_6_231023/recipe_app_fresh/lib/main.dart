@@ -92,7 +92,7 @@ void main() async {
     await recipeRepository.initializeWeb();
   }
 
-  final localeNotifier = ValueNotifier<Locale>(Locale("sv"));
+  final localeNotifier = ValueNotifier<Locale>(const Locale("sv"));
 
   runApp(
     ChangeNotifierProvider.value(
@@ -104,6 +104,8 @@ void main() async {
             return MaterialApp(
               title: 'Recipes App',
               theme:
+                  ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+              darkTheme:
                   ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
               home: const LayoutChooser(),
               locale: currentLocale,
@@ -161,15 +163,15 @@ class _DesktopViewState extends State<DesktopView> {
               },
               destinations: [
                 NavigationRailDestination(
-                  icon: Icon(Icons.food_bank),
+                  icon: const Icon(Icons.food_bank),
                   label: Text(AppLocalizations.of(context)!.ingredients),
                 ),
                 NavigationRailDestination(
-                  icon: Icon(Icons.food_bank_outlined),
+                  icon: const Icon(Icons.food_bank_outlined),
                   label: Text(AppLocalizations.of(context)!.recipes),
                 ),
                 NavigationRailDestination(
-                  icon: Icon(Icons.settings),
+                  icon: const Icon(Icons.settings),
                   label: Text(AppLocalizations.of(context)!.recipes),
                 ),
               ],
@@ -219,15 +221,15 @@ class _RecipesAppState extends State<RecipesApp> {
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.food_bank),
+              icon: const Icon(Icons.food_bank),
               label: AppLocalizations.of(context)!.ingredients,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.food_bank_outlined),
+              icon: const Icon(Icons.food_bank_outlined),
               label: AppLocalizations.of(context)!.recipes,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
+              icon: const Icon(Icons.settings),
               label: AppLocalizations.of(context)!.recipes,
             ),
           ],

@@ -52,14 +52,16 @@ class ActionResult<T> {
   bool get isFailure => !isSuccess;
 }
 
+typedef FResult<T> = Future<ActionResult<T>>;
+
 abstract interface class IRepository<T extends Identifiable> {
   String Function(T item) get serialize;
   T Function(String item) get deserialize;
   Future<ActionResult<T>> create(T item);
-  Future<ActionResult<T>> read(String id);
+  FResult<T> read(String id);
   Future<ActionResult<T>> update(String id, T item);
   Future<ActionResult<void>> delete(String id);
-  Future<ActionResult<List<T>>> list();
+  FResult<List<T>> list();
   Future<ActionResult<void>> clear();
 }
 

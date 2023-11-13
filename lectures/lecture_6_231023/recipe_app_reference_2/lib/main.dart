@@ -1,10 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_app/views/provider_example/provider_example.dart';
 import 'package:recipe_model/recipe_model.dart';
 import 'l10n/l10n.dart';
 import 'views/ingredients/ingredients_view.dart';

@@ -37,7 +37,7 @@ class IngredientsView extends StatefulWidget {
 class _IngredientsViewState extends State<IngredientsView> {
   // stateful widget as we will want to update the ingredients list when actions are performed
 
-  var ingredientsFuture = IngredientRepository.instance.list();
+  var ingredientsFuture = IngredientRepository.instance.list_two();
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,6 @@ class _IngredientsViewState extends State<IngredientsView> {
 
             return Scaffold(
               body: ListView.builder(
-                  
                   itemBuilder: (context, index) {
                     final ingredient = ingredients[index];
                     return ListTile(
