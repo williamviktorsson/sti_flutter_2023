@@ -1,11 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:recipe_app/views/provider_example/provider_example.dart';
 import 'package:recipe_model/recipe_model.dart';
 import 'l10n/l10n.dart';
 import 'views/ingredients/ingredients_view.dart';
+import 'views/localization/localization_view.dart';
 import 'views/recipes/recipes_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
@@ -85,137 +90,88 @@ void main() async {
 
   if (!kIsWeb) {
     final directory = await getApplicationDocumentsDirectory();
+
     await ingredientRepository.initialize(filePath: directory.path);
     await recipeRepository.initialize(filePath: directory.path);
   } else {
     await ingredientRepository.initializeWeb();
     await recipeRepository.initializeWeb();
   }
+  await initializeDateFormatting(); // initialize this thing for date formatting
 
-  final localeNotifier = ValueNotifier<Locale>(const Locale("sv"));
+  ValueNotifier<Locale> selectedLocale =
+      ValueNotifier(const Locale("sv", "SE"));
 
   runApp(
-    ChangeNotifierProvider.value(
-        value: localeNotifier,
-        child: ChangeNotifierProvider(
-          create: (_) => ValueNotifier<int>(0),
-          child: Builder(builder: (context) {
-            final currentLocale = context.watch<ValueNotifier<Locale>>().value;
-            return MaterialApp(
+    ValueListenableBuilder(
+        valueListenable: selectedLocale, // rebuild app on selectedLocale change
+        builder: (context, locale, _) {
+          return SafeArea(
+            child: MaterialApp(
               title: 'Recipes App',
               theme:
+                  //fromseed,
                   ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
               darkTheme:
                   ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-              home: const LayoutChooser(),
-              locale: currentLocale,
-              supportedLocales: AppLocalizations.supportedLocales,
+              home: ChangeNotifierProvider<ValueNotifier<Locale>>.value(
+                  // provide selectedLocale to the app
+                  value: selectedLocale,
+                  child: const RecipesApp()),
+              locale: locale,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
-            );
-          }),
-        )),
+              supportedLocales: AppLocalizations.supportedLocales,
+            ),
+          );
+        }),
   );
 }
 
-class LayoutChooser extends StatelessWidget {
-  const LayoutChooser({Key? key}) : super(key: key);
+class RecipesApp extends StatelessWidget {
+  const RecipesApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MediaQuery.of(context).size.width > 600
-        ? const DesktopView()
-        : const RecipesApp();
+    bool mobile = MediaQuery.of(context).size.width <= 600;
+
+    return mobile
+        ? const RecipesAppBottomNavigation()
+        : const RecipesAppDrawer();
   }
 }
 
-class DesktopView extends StatefulWidget {
-  const DesktopView({super.key});
+class RecipesAppBottomNavigation extends StatefulWidget {
+  const RecipesAppBottomNavigation({super.key});
 
   @override
-  State<DesktopView> createState() => _DesktopViewState();
+  State<RecipesAppBottomNavigation> createState() =>
+      _RecipesAppBottomNavigationState();
 }
 
-class _DesktopViewState extends State<DesktopView> {
+class _RecipesAppBottomNavigationState
+    extends State<RecipesAppBottomNavigation> {
   int currentPageIndex = 0;
+  late PageController _pageController;
+  late List<Widget> views;
 
-  final List<Widget> views = const [
-    IngredientsView(),
-    RecipesView(),
-    SettingsView()
-  ];
-
-  // TODO: Add a bottom navigation bar with two items: Ingredients and Recipes
-  // Create NavigationDestinations with proper icons and labels
-  // Create a list of NavigationDestinations
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    views = [
+      const IngredientsView(),
+      const RecipesView(),
+      const LocalizationView(),
+    ];
+    _pageController = PageController(initialPage: currentPageIndex);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // change to PageView to only load view when needed
-      // requires adding automatickeepalive on child views to not dispose when hidden
-      body: Row(
-        children: [
-          NavigationRail(
-              onDestinationSelected: (index) {
-                setState(() {
-                  currentPageIndex = index;
-                });
-              },
-              destinations: [
-                NavigationRailDestination(
-                  icon: const Icon(Icons.food_bank),
-                  label: Text(AppLocalizations.of(context)!.ingredients),
-                ),
-                NavigationRailDestination(
-                  icon: const Icon(Icons.food_bank_outlined),
-                  label: Text(AppLocalizations.of(context)!.recipes),
-                ),
-                NavigationRailDestination(
-                  icon: const Icon(Icons.settings),
-                  label: Text(AppLocalizations.of(context)!.recipes),
-                ),
-              ],
-              selectedIndex: currentPageIndex),
-          const VerticalDivider(),
-          Expanded(
-            child: IndexedStack(
-              index: currentPageIndex,
-              children: views,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class RecipesApp extends StatefulWidget {
-  const RecipesApp({super.key});
-
-  @override
-  State<RecipesApp> createState() => _RecipesAppState();
-}
-
-class _RecipesAppState extends State<RecipesApp> {
-  int currentPageIndex = 0;
-
-  final List<Widget> views = const [
-    IngredientsView(),
-    RecipesView(),
-    SettingsView()
-  ];
-
-  // TODO: Add a bottom navigation bar with two items: Ingredients and Recipes
-  // Create NavigationDestinations with proper icons and labels
-  // Create a list of NavigationDestinations
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        // change to PageView to only load view when needed
-        // requires adding automatickeepalive on child views to not dispose when hidden
-        body: IndexedStack(
-          index: currentPageIndex,
+        body: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: _pageController,
           children: views,
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -229,36 +185,84 @@ class _RecipesAppState extends State<RecipesApp> {
               label: AppLocalizations.of(context)!.recipes,
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.settings),
-              label: AppLocalizations.of(context)!.recipes,
+              icon: const Icon(Icons.language),
+              label: AppLocalizations.of(context)!.localeName,
             ),
           ],
           currentIndex: currentPageIndex,
           onTap: (int index) {
             setState(() {
               currentPageIndex = index;
+              _pageController.jumpToPage(currentPageIndex);
             });
           },
         ));
   }
 }
 
-class SettingsView extends StatelessWidget {
-  const SettingsView({Key? key}) : super(key: key);
+class RecipesAppDrawer extends StatefulWidget {
+  const RecipesAppDrawer({super.key});
+
+  @override
+  State<RecipesAppDrawer> createState() => _RecipesAppDrawerState();
+}
+
+class _RecipesAppDrawerState extends State<RecipesAppDrawer> {
+  int currentPageIndex = 0;
+  late PageController _pageController;
+  late List<Widget> views;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    views = [
+      const IngredientsView(),
+      const RecipesView(),
+      const LocalizationView(),
+    ];
+    _pageController = PageController(initialPage: currentPageIndex);
+  }
 
   @override
   Widget build(BuildContext context) {
-    Locale selectedLocale = context.watch<ValueNotifier<Locale>>().value;
-    return Center(
-      child: DropdownButton<String>(
-          value: selectedLocale.languageCode,
-          items: AppLocalizations.supportedLocales
-              .map((e) => DropdownMenuItem(
-                  value: e.languageCode, child: Text(e.languageCode)))
-              .toList(),
-          onChanged: (country) {
-            context.read<ValueNotifier<Locale>>().value = Locale(country!);
-          }),
+    return Scaffold(
+      body: Row(
+        children: <Widget>[
+          NavigationRail(
+            minWidth: 50,
+            destinations: [
+              NavigationRailDestination(
+                icon: const Icon(Icons.food_bank),
+                label: Text(AppLocalizations.of(context)!.ingredients),
+              ),
+              NavigationRailDestination(
+                icon: const Icon(Icons.food_bank_outlined),
+                label: Text(AppLocalizations.of(context)!.recipes),
+              ),
+              NavigationRailDestination(
+                icon: const Icon(Icons.language),
+                label: Text(AppLocalizations.of(context)!.localeName),
+              ),
+            ],
+            selectedIndex: currentPageIndex,
+            useIndicator: true,
+            onDestinationSelected: (int index) {
+              setState(() {
+                currentPageIndex = index;
+                _pageController.jumpToPage(currentPageIndex);
+              });
+            },
+          ),
+          const VerticalDivider(thickness: 1, width: 1),
+          Expanded(
+              child: PageView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: _pageController,
+            children: views,
+          )),
+        ],
+      ),
     );
   }
 }

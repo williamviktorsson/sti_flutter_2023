@@ -1,4 +1,27 @@
 {
-    "ingredients":"Ingredients",
-    "recipes": "Recipes"
+    "ingredients": "Ingredients",
+    "@ingredients": {
+        "description": "The ingredients of the recipe"
+    },
+    "recipes": "Recipes",
+    "@recipes": {
+        "description": "The recipes"
+    },
+    "add_ingredient": "Add ingredient",
+    "@add_ingredient": {
+        "description": "The button to add an ingredient"
+    },
+    "add_recipe": "Add recipe",
+    "@add_recipe": {
+        "description": "The button to add a recipe"
+    },
+    "enjoy_recipe": "Please enjoy this amazing {name} recipe!",
+    "@enjoy_recipe": {
+        "description": "The message to enjoy a recipe",
+        "placeholders": {
+            "name": {
+                "description": "The name of the recipe"
+            }
+        }
+    }
 }
