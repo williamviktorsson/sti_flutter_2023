@@ -31,13 +31,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orangeAccent),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+  MyHomePage({super.key});
+
+  ValueNotifier<int> index = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +57,48 @@ class MyHomePage extends StatelessWidget {
 
           if (snapshot.hasData && data != null) {
             User user = data;
-            return BlocProvider(
-                create: (context) =>
-                    OrdersBloc()..add(LoadOrders()), // ..add(LoadOrders()),
-                child: const CoffeView());
+
+            return ValueListenableBuilder(
+                valueListenable: index,
+                builder: (context, i, _) {
+                  return Scaffold(
+                    body: [
+                      BlocProvider(
+                          create: (context) => OrdersBloc()
+                            ..add(LoadOrders()), // ..add(LoadOrders()),
+                          child: const CoffeView()),
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("User id: " + user.uid),
+                          ],
+                        ),
+                      ),
+                    ][i],
+                    bottomNavigationBar: ValueListenableBuilder(
+                      valueListenable: index,
+                      builder: (context, value, child) {
+                        return BottomNavigationBar(
+                          currentIndex: value,
+                          onTap: (index) {
+                            this.index.value = index;
+                          },
+                          items: [
+                            BottomNavigationBarItem(
+                              icon: Icon(Icons.coffee),
+                              label: "Coffe",
+                            ),
+                            BottomNavigationBarItem(
+                              icon: Icon(Icons.person),
+                              label: "Profile",
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  );
+                });
           }
 
           if (snapshot.hasError) {
@@ -90,40 +130,6 @@ class CoffeView extends StatelessWidget {
     // coffe view reads coffe orders from orders bloc
 
     final ordersBloc = context.watch<OrdersBloc>();
-
-    return FutureBuilder(
-        future: http.get(Uri.http("localhost:8080")),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          if (snapshot.hasError) {
-            return Center(
-              child: Text(snapshot.error.toString()),
-            );
-          }
-
-          final data = snapshot.data;
-
-          if (snapshot.hasData && data != null) {
-            return Center(
-              child: Text(data.body),
-            );
-          }
-
-          return Center(
-            child: FilledButton(
-                onPressed: () {
-                  // create a user with unique id, that will remain logged in
-                  // after app restart
-                  FirebaseAuth.instance.signInAnonymously();
-                },
-                child: Text("Login")),
-          );
-        });
 
     return switch (ordersBloc.state) {
       OrderInitial() => Center(child: Text("nothing loaded")),
@@ -172,6 +178,7 @@ class OrdersListView extends StatelessWidget {
       }),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
+            
             context.read<OrdersBloc>().add(CreateOrder(Order(
                   FirebaseAuth.instance.currentUser!.uid,
                   OrderStatus.queue,
@@ -179,7 +186,6 @@ class OrdersListView extends StatelessWidget {
                   null,
                 )));
 
-            context.read<OrdersBloc>().add(LoadOrders());
           },
           label: Text("Order a coffe")),
     );

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -62,6 +64,7 @@ class OrderError extends OrderState {
 }
 
 class OrdersBloc extends Bloc<OrderEvent, OrderState> {
+
   OrdersBloc() : super(OrderInitial()) {
     on<OrderEvent>((event, emit) async {
       switch (event) {
@@ -73,21 +76,9 @@ class OrdersBloc extends Bloc<OrderEvent, OrderState> {
         case LoadOrders():
           emit(OrdersLoading());
 
-          // two options
-
-          // load some of the orders once and emit
-
-          // or stream all orders, and emit each time any order changes
-
-          // use oneach if not all snapshots should yield a new emit
-
-
           await emit.forEach(
               FirebaseFirestore.instance.collection("orders").snapshots(),
               onData: (snapshot) {
-                // every time a snapshot is amitted
-                // retrieve the entire collection
-                // firebase charges per document read
             List<Order> orders =
                 snapshot.docs.map((doc) => Order.fromJson(doc.data())).toList();
             return OrdersLoaded(orders);
