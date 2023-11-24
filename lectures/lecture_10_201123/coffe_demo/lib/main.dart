@@ -1,9 +1,11 @@
 import 'package:coffe_demo/bloc/orders_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'firebase_options.dart';
+import 'package:http/http.dart' as http;
 
 void main() async {
   // ensure that the binding is initialized before launching app
@@ -88,6 +90,40 @@ class CoffeView extends StatelessWidget {
     // coffe view reads coffe orders from orders bloc
 
     final ordersBloc = context.watch<OrdersBloc>();
+
+    return FutureBuilder(
+        future: http.get(Uri.http("localhost:8080")),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (snapshot.hasError) {
+            return Center(
+              child: Text(snapshot.error.toString()),
+            );
+          }
+
+          final data = snapshot.data;
+
+          if (snapshot.hasData && data != null) {
+            return Center(
+              child: Text(data.body),
+            );
+          }
+
+          return Center(
+            child: FilledButton(
+                onPressed: () {
+                  // create a user with unique id, that will remain logged in
+                  // after app restart
+                  FirebaseAuth.instance.signInAnonymously();
+                },
+                child: Text("Login")),
+          );
+        });
 
     return switch (ordersBloc.state) {
       OrderInitial() => Center(child: Text("nothing loaded")),
