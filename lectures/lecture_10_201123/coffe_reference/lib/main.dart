@@ -1,6 +1,7 @@
 import 'package:coffe_reference/bloc/orders_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -10,10 +11,41 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+  NotificationSettings settings = await messaging.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
+
+  try {
+    String? token = await messaging.getToken(
+      vapidKey: kIsWeb
+          ? "BAEPPhp2BPV1ZOZXqIQh6fBvbJnjmbrIWUzQNdpHJfVbkxVvmsD4ug4l1UBBH94nCRnKFwtZz6sG273tv6e86Oo"
+          : null,
+    );
+    print(token);
+  } catch (e) {
+    print(e);
+  }
+
+  messaging.getInitialMessage().then((message) {
+    if (message != null) {
+      print(message);
+    }
+  });
+
+  
 
   runApp(const MyApp());
 }
