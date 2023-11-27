@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:coffe_reference/bloc/orders_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -38,14 +40,6 @@ void main() async {
   } catch (e) {
     print(e);
   }
-
-  messaging.getInitialMessage().then((message) {
-    if (message != null) {
-      print(message);
-    }
-  });
-
-  
 
   runApp(const MyApp());
 }
@@ -105,8 +99,37 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  StreamSubscription? _subscription;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _subscription = FirebaseMessaging.onMessage.listen((event) {
+      if (event.notification != null &&
+          event.notification?.title != null &&
+          event.notification?.body != null) {
+        ScaffoldMessenger.of(context).clearSnackBars();
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(event.notification!.body!)));
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _subscription?.cancel();
+  }
 
   @override
   Widget build(BuildContext context) {

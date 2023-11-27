@@ -1,6 +1,7 @@
 import 'package:coffe_demo/bloc/orders_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +16,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // get unique FCM token for this device
+
+  String? token = await FirebaseMessaging.instance.getToken();
+  print(token);
 
   runApp(const MyApp());
 }
@@ -131,6 +137,10 @@ class CoffeView extends StatelessWidget {
 
     final ordersBloc = context.watch<OrdersBloc>();
 
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message.notification?.body??"Foobar")));
+    });
+
     return switch (ordersBloc.state) {
       OrderInitial() => Center(child: Text("nothing loaded")),
       OrdersLoading() => Center(child: CircularProgressIndicator()),
@@ -177,15 +187,15 @@ class OrdersListView extends StatelessWidget {
             });
       }),
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            
-            context.read<OrdersBloc>().add(CreateOrder(Order(
-                  FirebaseAuth.instance.currentUser!.uid,
-                  OrderStatus.queue,
-                  DateTime.now(),
-                  null,
-                )));
+          onPressed: () async {
+            String? token = await FirebaseMessaging.instance.getToken();
 
+            context.read<OrdersBloc>().add(CreateOrder(Order(
+                FirebaseAuth.instance.currentUser!.uid,
+                OrderStatus.queue,
+                DateTime.now(),
+                null,
+                token)));
           },
           label: Text("Order a coffe")),
     );

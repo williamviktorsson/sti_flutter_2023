@@ -12,8 +12,10 @@ class Order extends Equatable {
   final OrderStatus status;
   final DateTime placedAt;
   DateTime? completedAt;
+  final String? fcmToken;
 
-  Order(this.userId, this.status, this.placedAt, this.completedAt);
+  Order(
+      this.userId, this.status, this.placedAt, this.completedAt, this.fcmToken);
 
   @override
   List<Object?> get props => [userId, status, placedAt, completedAt];
@@ -23,6 +25,7 @@ class Order extends Equatable {
         'status': status.index,
         'placedAt': placedAt.toIso8601String(),
         'completedAt': completedAt?.toIso8601String(),
+        'fcmToken': fcmToken
       };
 
   factory Order.fromJson(Map<String, dynamic> json) => Order(
@@ -32,6 +35,7 @@ class Order extends Equatable {
         json['completedAt'] != null
             ? DateTime.parse(json['completedAt'] as String)
             : null,
+        json['fcmToken'],
       );
 }
 
@@ -64,7 +68,6 @@ class OrderError extends OrderState {
 }
 
 class OrdersBloc extends Bloc<OrderEvent, OrderState> {
-
   OrdersBloc() : super(OrderInitial()) {
     on<OrderEvent>((event, emit) async {
       switch (event) {
