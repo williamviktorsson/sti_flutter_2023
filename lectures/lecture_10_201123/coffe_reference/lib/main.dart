@@ -139,6 +139,21 @@ class _LoginViewState extends State<LoginView> {
       appBar: AppBar(
         title: Text('Welcome :' + user.uid),
       ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            ListTile(
+              title: Text('Username'),
+            ),
+            ListTile(
+              title: Text('Username'),
+            ),
+            Expanded(
+              child: Container(),
+            ),
+          ],
+        ),
+      ),
       body: BlocProvider(
           create: (context) => OrdersBloc(user: user)..add(LoadOrders()),
           child: const OrdersView()),
@@ -173,8 +188,50 @@ class OrdersView extends StatelessWidget {
           OrderError() => Center(child: Text('Something went wrong')),
         }),
         FilledButton(
-            onPressed: () {
-              ordersBloc.placeOrder();
+            onPressed: () async {
+              // todo alert dialog
+
+              await showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: Text('Are you sure?'),
+                        content: Container(
+                          height: MediaQuery.of(context).size.height * 0.35,
+                          width: MediaQuery.of(context).size.width * 0.65,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: List.generate(
+                                100,
+                                (index) => index == 5
+                                    ? Container(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 20),
+                                        color: Colors.red,
+                                        child: ListTile(
+                                          leading: Text("$index"),
+                                        ))
+                                    : ListTile(
+                                        leading: Text("$index"),
+                                      ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('No'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Yes'),
+                          ),
+                        ],
+                      ));
             },
             child: Text("Place order"))
       ],
@@ -193,6 +250,12 @@ class OrdersList extends StatelessWidget {
         itemCount: orders.length,
         itemBuilder: (context, index) {
           final order = orders[index];
+          if (index == 5) {
+            return ListTile(
+              title: Text(order.placedAt.toString()),
+              subtitle: Text(order.status.toString()),
+            );
+          }
           return ListTile(
             title: Text(order.placedAt.toString()),
             subtitle: Text(order.status.toString()),

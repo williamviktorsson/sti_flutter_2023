@@ -68,7 +68,9 @@ class OrderError extends OrderState {
 }
 
 class OrdersBloc extends Bloc<OrderEvent, OrderState> {
+
   OrdersBloc() : super(OrderInitial()) {
+
     on<OrderEvent>((event, emit) async {
       switch (event) {
         case CreateOrder():
@@ -82,6 +84,7 @@ class OrdersBloc extends Bloc<OrderEvent, OrderState> {
           await emit.forEach(
               FirebaseFirestore.instance.collection("orders").snapshots(),
               onData: (snapshot) {
+                print("orders changed");
             List<Order> orders =
                 snapshot.docs.map((doc) => Order.fromJson(doc.data())).toList();
             return OrdersLoaded(orders);

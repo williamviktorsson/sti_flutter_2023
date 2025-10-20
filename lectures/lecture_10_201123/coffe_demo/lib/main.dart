@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:coffe_demo/bloc/orders_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -138,7 +140,8 @@ class CoffeView extends StatelessWidget {
     final ordersBloc = context.watch<OrdersBloc>();
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message.notification?.body??"Foobar")));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(message.notification?.body ?? "Foobar")));
     });
 
     return switch (ordersBloc.state) {
@@ -150,23 +153,73 @@ class CoffeView extends StatelessWidget {
   }
 }
 
-class OrdersListView extends StatelessWidget {
+class OrdersListView extends StatefulWidget {
   final List<Order> orders;
 
   const OrdersListView({super.key, required this.orders});
 
   @override
+  State<OrdersListView> createState() => _OrdersListViewState();
+}
+
+class _OrdersListViewState extends State<OrdersListView> {
+  late final AppLifecycleListener _listener;
+  ValueNotifier<int> index = ValueNotifier(0);
+  late final Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      index.value = index.value + 1;
+      print("timer: " + index.value.toString());
+    });
+    _listener = AppLifecycleListener(
+      onStateChange: (state) {
+        switch (state) {
+          case AppLifecycleState.inactive:
+          case AppLifecycleState.hidden:
+          case AppLifecycleState.paused:
+          case AppLifecycleState.detached:
+            print("lifecycle: timer canceled");
+            //timer.cancel();
+            break;
+          case AppLifecycleState.resumed:
+            print("lifecycle: timer resumed");
+  /*           timer = Timer.periodic(Duration(seconds: 1), (timer) {
+              index.value = index.value + 1;
+            }); */
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _listener.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          title: ValueListenableBuilder(
+        valueListenable: index,
+        builder: (context, value, _) {
+          return Text(value.toString());
+        },
+      )),
       body: Builder(builder: (context) {
-        if (orders.isEmpty) {
+        if (widget.orders.isEmpty) {
           return Center(child: Text("no orders"));
         }
 
         return ListView.builder(
-            itemCount: orders.length,
+            itemCount: widget.orders.length,
             itemBuilder: (context, index) {
-              Order order = orders[index];
+              Order order = widget.orders[index];
 
               String userId = FirebaseAuth.instance.currentUser!.uid;
 
@@ -188,6 +241,8 @@ class OrdersListView extends StatelessWidget {
       }),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
+        
+
             String? token = await FirebaseMessaging.instance.getToken();
 
             context.read<OrdersBloc>().add(CreateOrder(Order(
